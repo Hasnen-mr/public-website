@@ -36,6 +36,7 @@
             color: var(--text-dark);
             background: var(--color-secondary);
             overflow-x: hidden;
+            padding-top: 80px; /* Space for sticky header */
         }
 
         .container {
@@ -44,31 +45,139 @@
             padding: 0 20px;
         }
 
-        /* Logo */
+        /* Sticky Header */
+        .sticky-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(26, 26, 46, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        /* Enhanced Logo */
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5em;
+            font-size: 2.2em;
             font-weight: 900;
             color: var(--text-light);
             text-decoration: none;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .logo::before {
+            content: '⚡';
+            font-size: 1.2em;
             background: linear-gradient(45deg, var(--color-gold), #e67e22);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            position: relative;
-            display: inline-block;
+            filter: drop-shadow(0 0 10px rgba(243, 156, 18, 0.5));
         }
 
-        .logo::after {
+        .logo-text {
+            background: linear-gradient(45deg, var(--color-gold), #e67e22, var(--color-success));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .logo-text::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: -3px;
             left: 0;
             width: 100%;
-            height: 3px;
+            height: 2px;
             background: linear-gradient(45deg, var(--color-gold), #e67e22);
             border-radius: 2px;
+            opacity: 0.7;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo:hover::before {
+            animation: logoSpark 0.6s ease-out;
+        }
+
+        @keyframes logoSpark {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        /* Navigation */
+        .header-nav {
+            display: flex;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05em;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, var(--color-gold), var(--color-success));
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+            color: var(--color-gold);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .header-cta {
+            background: linear-gradient(45deg, var(--color-success), #00a085);
+            color: var(--text-light);
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .header-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 200, 150, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
         /* Floating Buttons */
@@ -340,17 +449,17 @@
             display: block;
         }
 
-        /* Header */
-        .header {
+        /* Hero Section */
+        .hero {
             background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-gradient-2) 100%);
             color: var(--text-light);
             text-align: center;
-            padding: 100px 0;
+            padding: 120px 0 100px;
             position: relative;
             overflow: hidden;
         }
 
-        .header::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
@@ -366,34 +475,9 @@
             50% { transform: translateY(-30px) rotate(2deg); }
         }
 
-        .header-content {
+        .hero-content {
             position: relative;
             z-index: 2;
-        }
-
-        .header-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 60px;
-        }
-
-        .header-nav {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-link {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            opacity: 0.9;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover {
-            opacity: 1;
-            color: var(--color-gold);
         }
 
         .trust-badge {
@@ -469,6 +553,91 @@
         .hero-cta:hover {
             transform: translateY(-8px) scale(1.05);
             box-shadow: 0 30px 60px rgba(0, 200, 150, 0.5);
+        }
+
+        /* Horizontal Sliding Testimonials */
+        .testimonials-slider {
+            background: var(--text-light);
+            padding: 80px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .testimonials-slider::before,
+        .testimonials-slider::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .testimonials-slider::before {
+            left: 0;
+            background: linear-gradient(to right, var(--text-light), transparent);
+        }
+
+        .testimonials-slider::after {
+            right: 0;
+            background: linear-gradient(to left, var(--text-light), transparent);
+        }
+
+        .slider-track {
+            display: flex;
+            gap: 30px;
+            animation: slideLeft 60s linear infinite;
+            width: calc(400px * 12); /* Adjust based on number of testimonials */
+        }
+
+        @keyframes slideLeft {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(calc(-400px * 6)); /* Half of total width for seamless loop */
+            }
+        }
+
+        .testimonial-slide {
+            min-width: 370px;
+            background: var(--color-accent);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(26, 26, 46, 0.1);
+            border-left: 4px solid var(--color-success);
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .testimonial-slide::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4em;
+            color: rgba(26, 26, 46, 0.1);
+            font-family: serif;
+        }
+
+        .testimonial-stars {
+            color: var(--color-gold);
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            font-size: 1em;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 0.9em;
         }
 
         /* Social Proof */
@@ -779,8 +948,66 @@
             text-align: center;
         }
 
+        /* Mobile Navigation */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-nav.show {
+            display: block;
+        }
+
+        .mobile-nav .nav-link {
+            display: block;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-nav .header-cta {
+            margin-top: 20px;
+            display: inline-block;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+
+            .header-content {
+                padding: 12px 0;
+            }
+
+            .logo {
+                font-size: 1.8em;
+            }
+
+            .header-nav {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
             .headline {
                 font-size: 2.8em;
             }
@@ -817,20 +1044,6 @@
                 font-size: 1em;
             }
 
-            .header-top {
-                flex-direction: column;
-                gap: 30px;
-                text-align: center;
-            }
-
-            .header-nav {
-                justify-content: center;
-            }
-
-            .logo {
-                font-size: 2em;
-            }
-
             .offer-content {
                 padding: 40px 25px;
             }
@@ -841,6 +1054,23 @@
 
             .features-grid .feature {
                 padding: 30px 20px;
+            }
+
+            .testimonial-slide {
+                min-width: 300px;
+            }
+
+            .slider-track {
+                width: calc(330px * 12);
+            }
+
+            @keyframes slideLeft {
+                from {
+                    transform: translateX(0);
+                }
+                to {
+                    transform: translateX(calc(-330px * 6));
+                }
             }
         }
 
@@ -861,6 +1091,10 @@
             .floating-access-btn {
                 padding: 12px 18px;
                 font-size: 0.9em;
+            }
+
+            .testimonial-slide {
+                min-width: 280px;
             }
         }
 
@@ -971,6 +1205,30 @@
     </style>
 </head>
 <body>
+    <!-- Sticky Header -->
+    <header class="sticky-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <span class="logo-text">LeLaude</span>
+                </a>
+                <nav class="header-nav">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#testimonials" class="nav-link">Reviews</a>
+                    <a href="https://lelaude.com/checkout" class="header-cta">Get Access $99</a>
+                </nav>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            </div>
+            <div class="mobile-nav" id="mobileNav">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#testimonials" class="nav-link">Reviews</a>
+                <a href="https://lelaude.com/checkout" class="header-cta">Get Access $99</a>
+            </div>
+        </div>
+    </header>
+
     <!-- Floating Access Button (Left) -->
     <a href="https://lelaude.com/checkout" class="floating-access-btn">
         💳 Get Access $99
@@ -1037,18 +1295,10 @@
         " onmouseover="this.style.borderColor='white'" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.5)'">Maybe Later</button>
     </div>
 
-    <!-- Header Section -->
-    <section class="header">
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="container">
-            <div class="header-content">
-                <div class="header-top">
-                    <a href="#" class="logo">LeLaude</a>
-                    <nav class="header-nav">
-                        <a href="#about" class="nav-link">About</a>
-                        <a href="#features" class="nav-link">Features</a>
-                        <a href="#testimonials" class="nav-link">Reviews</a>
-                    </nav>
-                </div>
+            <div class="hero-content">
                 <div class="trust-badge">
                     <span class="stars">⭐⭐⭐⭐⭐</span>
                     Trusted by Hundreds of Entrepreneurs
@@ -1057,6 +1307,74 @@
                 <p class="subheadline">Learn How to Start Your Own Business With This Step-by-Step Blueprint<br>
                 Launch your own AI-powered brand in 90 days – even with zero experience.</p>
                 <a href="https://lelaude.com/checkout" class="hero-cta">🚀 Get Instant Access for $99</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horizontal Sliding Testimonials -->
+    <section class="testimonials-slider">
+        <div class="slider-track">
+            <!-- First set of testimonials -->
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <div class="testimonial-text">"This blueprint changed my life! Went from corporate fear to running my own brand."</div>
+                <div class="testimonial-author">Sarah M. - Los Angeles</div>
+            </div>
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <div class="testimonial-text">"AI scared me, now I use it to grow my business. Amazing transformation!"</div>
+                <div class="testimonial-author">Mike R. - New York</div>
+            </div>
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <div class="testimonial-text">"From zero to €50k revenue in 6 months. The best investment I ever made."</div>
+                <div class="testimonial-author">Elena K. - Berlin</div>
+            </div>
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <div class="testimonial-text">"Step-by-step guidance made everything so clear. No fluff, just results."</div>
+                <div class="testimonial-author">James L. - London</div>
+            </div>
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <div class="testimonial-text">"Finally escaped the 9-5 trap. My brand now generates passive income daily."</div>
+                <div class="testimonial-author">Maria S. - Madrid</div>
+            </div>
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <div class="testimonial-text">"The production contacts alone were worth 10x the price. Pure gold!"</div>
+                <div class="testimonial-author">David C. - Toronto</div>
+            </div>
+            <!-- Duplicate set for seamless loop -->
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <div class="testimonial-text">"This blueprint changed my life! Went from corporate fear to running my own brand."</div>
+                <div class="testimonial-author">Sarah M. - Los Angeles</div>
+            </div>
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <div class="testimonial-text">"AI scared me, now I use it to grow my business. Amazing transformation!"</div>
+                <div class="testimonial-author">Mike R. - New York</div>
+            </div>
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <div class="testimonial-text">"From zero to €50k revenue in 6 months. The best investment I ever made."</div>
+                <div class="testimonial-author">Elena K. - Berlin</div>
+            </div>
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <div class="testimonial-text">"Step-by-step guidance made everything so clear. No fluff, just results."</div>
+                <div class="testimonial-author">James L. - London</div>
+            </div>
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <div class="testimonial-text">"Finally escaped the 9-5 trap. My brand now generates passive income daily."</div>
+                <div class="testimonial-author">Maria S. - Madrid</div>
+            </div>
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <div class="testimonial-text">"The production contacts alone were worth 10x the price. Pure gold!"</div>
+                <div class="testimonial-author">David C. - Toronto</div>
             </div>
         </div>
     </section>
@@ -1328,6 +1646,12 @@
     </footer>
 
     <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('show');
+        }
+
         // AI Chat System
         let conversationStep = 0;
         let userHasMessaged = false;
@@ -1595,6 +1919,14 @@
                         block: 'start'
                     });
                 }
+            });
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.mobile-nav .nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const mobileNav = document.getElementById('mobileNav');
+                mobileNav.classList.remove('show');
             });
         });
     </script>
