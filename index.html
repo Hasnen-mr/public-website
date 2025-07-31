@@ -6,6 +6,20 @@
     <title>Launch Your AI-Powered Brand in 90 Days | LeLaude</title>
     <meta name="description" content="Learn how to start your own AI-powered business with our proven blueprint. Transform your career fear into entrepreneurial success.">
     <style>
+        :root {
+            --color-primary: #000321;
+            --color-secondary: #F6F6FF;
+            --color-accent: #f8f8f8;
+            --color-gradient-1: #000321;
+            --color-gradient-2: #1a1a4a;
+            --color-success: #00d4aa;
+            --color-warning: #ff6b6b;
+            --text-light: #F6F6FF;
+            --text-dark: #000321;
+            --shadow-light: rgba(246, 246, 255, 0.1);
+            --shadow-dark: rgba(0, 3, 33, 0.3);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,8 +29,9 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #fafafa;
+            color: var(--text-dark);
+            background: var(--color-secondary);
+            overflow-x: hidden;
         }
 
         .container {
@@ -25,12 +40,155 @@
             padding: 0 20px;
         }
 
+        /* Floating Popup - Moved to Right */
+        .floating-popup {
+            position: fixed;
+            right: -280px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(145deg, var(--color-primary), var(--color-gradient-2));
+            color: var(--text-light);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px var(--shadow-dark);
+            z-index: 1001;
+            width: 280px;
+            animation: slideInOutRight 15s infinite;
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--shadow-light);
+            display: none;
+        }
+
+        @keyframes slideInOutRight {
+            0% { right: -280px; }
+            10% { right: 20px; }
+            90% { right: 20px; }
+            100% { right: -280px; }
+        }
+
+        .floating-popup.show {
+            display: block;
+        }
+
+        .popup-keyword {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            color: var(--color-success);
+        }
+
+        .popup-cta {
+            background: var(--color-success);
+            color: var(--text-light);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+
+        .popup-cta:hover {
+            background: #00b894;
+            transform: scale(1.05);
+        }
+
+        /* AI Agent Popup */
+        .ai-agent-popup {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(145deg, var(--color-primary), var(--color-gradient-2));
+            color: var(--text-light);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px var(--shadow-dark);
+            z-index: 1002;
+            width: 320px;
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--shadow-light);
+            display: none;
+            animation: aiPopupSlide 0.5s ease-out;
+        }
+
+        @keyframes aiPopupSlide {
+            from {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .ai-agent-popup.show {
+            display: block;
+        }
+
+        .ai-agent-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .ai-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--color-success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 1.2em;
+        }
+
+        .ai-name {
+            font-weight: 700;
+            color: var(--color-success);
+        }
+
+        .ai-status {
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+
+        .ai-message {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .ai-close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.2em;
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+        .ai-close:hover {
+            opacity: 1;
+        }
+
         /* Header */
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-gradient-2) 100%);
+            color: var(--text-light);
             text-align: center;
-            padding: 60px 0;
+            padding: 100px 0;
             position: relative;
             overflow: hidden;
         }
@@ -42,8 +200,13 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.1);
-            z-index: 1;
+            background: radial-gradient(circle at 30% 70%, rgba(246, 246, 255, 0.1) 0%, transparent 50%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(2deg); }
         }
 
         .header-content {
@@ -52,222 +215,305 @@
         }
 
         .trust-badge {
-            background: rgba(255,255,255,0.2);
-            padding: 10px 20px;
-            border-radius: 25px;
+            background: rgba(246, 246, 255, 0.15);
+            padding: 18px 35px;
+            border-radius: 50px;
             display: inline-block;
-            margin-bottom: 20px;
-            backdrop-filter: blur(10px);
+            margin-bottom: 40px;
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--shadow-light);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 25px rgba(246, 246, 255, 0.2); }
+            to { box-shadow: 0 0 40px rgba(246, 246, 255, 0.4); }
         }
 
         .headline {
-            font-size: 3.5em;
-            font-weight: 800;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 4.2em;
+            font-weight: 900;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 8px rgba(0, 3, 33, 0.5);
+            background: linear-gradient(45deg, var(--text-light), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
         }
 
         .subheadline {
-            font-size: 1.4em;
-            margin-bottom: 30px;
+            font-size: 1.6em;
+            margin-bottom: 50px;
             opacity: 0.95;
+            font-weight: 400;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-cta {
-            background: #ff6b6b;
-            color: white;
-            padding: 18px 40px;
+            background: linear-gradient(45deg, var(--color-success), #00b894);
+            color: var(--text-light);
+            padding: 25px 60px;
             border: none;
-            border-radius: 50px;
-            font-size: 1.2em;
+            border-radius: 60px;
+            font-size: 1.4em;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 10px 30px rgba(255,107,107,0.4);
+            box-shadow: 0 20px 40px rgba(0, 212, 170, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
         }
 
         .hero-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255,107,107,0.6);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(0, 212, 170, 0.5);
         }
 
         /* Social Proof */
         .social-proof {
-            background: white;
-            padding: 60px 0;
+            background: var(--color-secondary);
+            padding: 100px 0;
             text-align: center;
+            position: relative;
         }
 
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 2;
         }
 
         .testimonial {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 15px;
-            border-left: 5px solid #667eea;
-            transition: transform 0.3s ease;
+            background: linear-gradient(145deg, #ffffff, var(--color-accent));
+            padding: 40px;
+            border-radius: 25px;
+            border-left: 6px solid var(--color-primary);
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 35px rgba(0, 3, 33, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -15px;
+            left: 25px;
+            font-size: 7em;
+            color: rgba(0, 3, 33, 0.05);
+            font-family: serif;
         }
 
         .testimonial:hover {
-            transform: translateY(-5px);
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(0, 3, 33, 0.15);
+            border-left-color: var(--color-success);
         }
 
         .stars {
             color: #ffd700;
-            font-size: 1.2em;
-            margin-bottom: 15px;
+            font-size: 1.4em;
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
         }
 
         /* Offer Section */
         .offer {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-            color: white;
-            padding: 80px 0;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-gradient-2) 100%);
+            color: var(--text-light);
+            padding: 120px 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(246, 246, 255, 0.08) 0%, transparent 70%);
+            animation: rotate 25s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .offer-content {
-            background: rgba(255,255,255,0.1);
-            padding: 50px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
+            background: rgba(246, 246, 255, 0.1);
+            padding: 70px;
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--shadow-light);
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 30px 60px rgba(0, 3, 33, 0.3);
         }
 
         .price-container {
-            margin: 40px 0;
+            margin: 50px 0;
         }
 
         .original-price {
-            font-size: 1.5em;
+            font-size: 1.6em;
             text-decoration: line-through;
             opacity: 0.7;
+            margin-bottom: 10px;
         }
 
         .current-price {
-            font-size: 4em;
-            font-weight: 800;
-            color: #fff200;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 5em;
+            font-weight: 900;
+            color: var(--color-success);
+            text-shadow: 0 0 30px rgba(0, 212, 170, 0.5);
+            animation: priceGlow 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes priceGlow {
+            from { text-shadow: 0 0 30px rgba(0, 212, 170, 0.5); }
+            to { text-shadow: 0 0 50px rgba(0, 212, 170, 0.8); }
         }
 
         .countdown {
-            background: rgba(0,0,0,0.3);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 40px 0;
+            background: rgba(0, 3, 33, 0.5);
+            padding: 45px;
+            border-radius: 25px;
+            margin: 60px 0;
+            border: 2px solid var(--shadow-light);
+            box-shadow: 0 20px 40px rgba(0, 3, 33, 0.4);
         }
 
         .countdown-timer {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
         }
 
         .time-unit {
-            background: rgba(255,255,255,0.2);
-            padding: 15px;
-            border-radius: 10px;
-            min-width: 80px;
+            background: rgba(246, 246, 255, 0.15);
+            padding: 25px;
+            border-radius: 20px;
+            min-width: 100px;
+            border: 1px solid var(--shadow-light);
+            animation: countdownPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes countdownPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
         }
 
         .time-number {
-            font-size: 2em;
-            font-weight: bold;
+            font-size: 2.5em;
+            font-weight: 900;
             display: block;
+            color: var(--color-success);
+            text-shadow: 0 0 15px rgba(0, 212, 170, 0.5);
         }
 
         /* Features */
         .features {
-            padding: 80px 0;
-            background: white;
+            padding: 120px 0;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-gradient-2) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="1" fill="rgba(246,246,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(246,246,255,0.1)"/></svg>');
+            background-size: 250px 250px;
+            animation: backgroundMove 15s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(250px, 250px); }
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
             gap: 40px;
-            margin-top: 50px;
+            margin-top: 80px;
+            position: relative;
+            z-index: 2;
         }
 
         .feature {
             text-align: center;
-            padding: 30px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            padding: 45px;
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            background: rgba(246, 246, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--shadow-light);
+            color: var(--text-light);
+            box-shadow: 0 20px 40px rgba(0, 3, 33, 0.2);
         }
 
         .feature:hover {
-            border-color: #667eea;
-            transform: translateY(-5px);
+            background: rgba(246, 246, 255, 0.2);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 3, 33, 0.3);
         }
 
         .feature-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-
-        /* Modules */
-        .modules {
-            background: #f8f9fa;
-            padding: 80px 0;
-        }
-
-        .modules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .module {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .module:hover {
-            transform: translateY(-5px);
-        }
-
-        .module-number {
-            background: #667eea;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-bottom: 20px;
+            font-size: 4em;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 25px rgba(246, 246, 255, 0.3));
         }
 
         /* About */
         .about {
-            padding: 80px 0;
-            background: white;
+            padding: 100px 0;
+            background: var(--color-secondary);
         }
 
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 80px;
             align-items: center;
         }
 
         .about-text {
-            font-size: 1.1em;
+            font-size: 1.15em;
+            line-height: 1.7;
         }
 
         .about-image {
@@ -275,58 +521,67 @@
         }
 
         .alex-photo {
-            width: 300px;
-            height: 300px;
+            width: 320px;
+            height: 320px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-gradient-2) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 3em;
+            color: var(--text-light);
+            font-size: 4em;
+            font-weight: 900;
             margin: 0 auto;
+            box-shadow: 0 25px 50px rgba(0, 3, 33, 0.3);
         }
 
         /* Testimonials */
         .testimonials {
-            background: #f8f9fa;
-            padding: 80px 0;
+            background: var(--color-accent);
+            padding: 100px 0;
         }
 
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
         }
 
         /* FAQ */
         .faq {
-            padding: 80px 0;
-            background: white;
+            padding: 100px 0;
+            background: var(--color-secondary);
         }
 
         .faq-item {
-            background: #f8f9fa;
-            margin-bottom: 15px;
-            border-radius: 10px;
+            background: #ffffff;
+            margin-bottom: 20px;
+            border-radius: 15px;
             overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 3, 33, 0.08);
         }
 
         .faq-question {
-            padding: 20px;
-            background: #667eea;
-            color: white;
+            padding: 25px;
+            background: var(--color-primary);
+            color: var(--text-light);
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--color-gradient-2);
         }
 
         .faq-answer {
-            padding: 20px;
+            padding: 25px;
             display: none;
+            line-height: 1.6;
         }
 
         .faq-answer.active {
@@ -335,38 +590,40 @@
 
         /* Footer */
         .footer {
-            background: #2c3e50;
-            color: white;
-            padding: 40px 0;
+            background: var(--color-primary);
+            color: var(--text-light);
+            padding: 60px 0;
             text-align: center;
         }
 
         /* Sticky CTA */
         .sticky-cta {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #ff6b6b;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
+            bottom: 25px;
+            right: 25px;
+            background: linear-gradient(45deg, var(--color-success), #00b894);
+            color: var(--text-light);
+            padding: 20px 35px;
+            border-radius: 60px;
             text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 5px 20px rgba(255,107,107,0.4);
-            z-index: 1000;
-            animation: pulse 2s infinite;
+            font-weight: 700;
+            box-shadow: 0 15px 35px rgba(0, 212, 170, 0.4);
+            z-index: 999;
+            animation: stickyPulse 4s infinite;
+            border: 2px solid rgba(246, 246, 255, 0.2);
+            backdrop-filter: blur(15px);
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        @keyframes stickyPulse {
+            0% { transform: scale(1); box-shadow: 0 15px 35px rgba(0, 212, 170, 0.4); }
+            50% { transform: scale(1.1); box-shadow: 0 20px 45px rgba(0, 212, 170, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 15px 35px rgba(0, 212, 170, 0.4); }
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .headline {
-                font-size: 2.5em;
+                font-size: 2.8em;
             }
             
             .about-content {
@@ -379,51 +636,115 @@
                 align-items: center;
             }
             
-            .modules-grid,
-            .features-grid {
+            .features-grid,
+            .testimonial-grid,
+            .testimonials-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .floating-popup,
+            .ai-agent-popup {
+                width: 260px;
+            }
+
+            .floating-popup {
+                right: -260px;
+            }
+
+            .ai-agent-popup {
+                width: 280px;
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
             }
         }
 
         .section-title {
-            font-size: 2.5em;
-            font-weight: 800;
+            font-size: 3.2em;
+            font-weight: 900;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-gradient-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .section-subtitle {
             text-align: center;
-            font-size: 1.2em;
-            margin-bottom: 40px;
-            opacity: 0.8;
+            font-size: 1.4em;
+            margin-bottom: 60px;
+            opacity: 0.85;
+            font-weight: 400;
         }
 
         .urgency-text {
-            background: rgba(255,255,255,0.2);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            font-weight: 600;
+            background: rgba(246, 246, 255, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            font-weight: 700;
+            border: 1px solid var(--shadow-light);
         }
 
         .benefit-list {
             list-style: none;
-            margin: 20px 0;
+            margin: 30px 0;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .benefit-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(246, 246, 255, 0.2);
+            font-size: 1.1em;
         }
 
         .benefit-list li:before {
             content: "✅ ";
-            margin-right: 10px;
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+
+        /* Enhanced Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
+    <!-- Floating Popup - Right Side -->
+    <div class="floating-popup" id="floatingPopup">
+        <div class="popup-keyword" id="rotatingKeyword">🚀 Start Your Brand Today!</div>
+        <p style="font-size: 0.9em; margin-bottom: 15px;">Limited time offer - Don't miss out!</p>
+        <a href="https://lelaude.com/checkout" class="popup-cta">Get Access Now</a>
+    </div>
+
+    <!-- AI Agent Popup -->
+    <div class="ai-agent-popup" id="aiAgentPopup">
+        <button class="ai-close" onclick="closeAiPopup()">×</button>
+        <div class="ai-agent-header">
+            <div class="ai-avatar">🤖</div>
+            <div>
+                <div class="ai-name">AI Assistant</div>
+                <div class="ai-status">Online now</div>
+            </div>
+        </div>
+        <div class="ai-message" id="aiMessage">
+            Hi! I'm here to help you launch your AI-powered brand. Do you have any questions about our blueprint?
+        </div>
+        <a href="https://lelaude.com/checkout" class="popup-cta">Start My Brand Journey</a>
+    </div>
+
     <!-- Header Section -->
     <section class="header">
         <div class="container">
@@ -447,12 +768,12 @@
             <p class="section-subtitle">REAL PEOPLE, REAL RESULTS!</p>
             
             <div class="testimonial-grid">
-                <div class="testimonial">
+                <div class="testimonial fade-in">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p>"The course didn't just teach me — it pushed me. The mindset and structure helped me go from dreaming to doing."</p>
                     <strong>Natalie T. - New York, USA</strong>
                 </div>
-                <div class="testimonial">
+                <div class="testimonial fade-in">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p>"AI had me panicking about the future. Now I run a small online brand — and I see technology as a tool, not a threat."</p>
                     <strong>Jonas F. - Hamburg, Germany</strong>
@@ -466,14 +787,14 @@
         <div class="container">
             <div class="offer-content">
                 <div class="stars">⭐⭐⭐⭐⭐ 5 Star-rated</div>
-                <h2 style="font-size: 2.5em; margin: 20px 0;">Learn How to Use AI to Launch Your Own Business</h2>
+                <h2 style="font-size: 2.8em; margin: 25px 0;">Learn How to Use AI to Launch Your Own Business</h2>
                 
                 <div class="urgency-text">
                     <strong>AI may replace 300 million jobs (Goldman Sachs via BBC)</strong>
                 </div>
 
-                <h3 style="font-size: 1.8em; margin: 30px 0;">🚀 What You'll Get:</h3>
-                <p style="font-size: 1.3em; font-weight: 600;">Blueprint + 6 Modules + 61 Check-list</p>
+                <h3 style="font-size: 2em; margin: 35px 0;">🚀 What You'll Get:</h3>
+                <p style="font-size: 1.4em; font-weight: 700; margin-bottom: 30px;">Blueprint + 6 Modules + 61 Check-list</p>
                 
                 <ul class="benefit-list">
                     <li><strong>Branding & Logo</strong> – Build a powerful identity that people remember</li>
@@ -490,7 +811,7 @@
                 </div>
 
                 <div class="countdown">
-                    <h3>Offer Expires in 24 Hours</h3>
+                    <h3 style="font-size: 1.8em;">Offer Expires in 24 Hours</h3>
                     <div class="countdown-timer">
                         <div class="time-unit">
                             <span class="time-number" id="hours">18</span>
@@ -507,7 +828,7 @@
                     </div>
                 </div>
 
-                <a href="https://lelaude.com/checkout" class="hero-cta" style="font-size: 1.4em; padding: 20px 50px;">
+                <a href="https://lelaude.com/checkout" class="hero-cta" style="font-size: 1.5em; padding: 25px 60px;">
                     🚀 Yes! I'm Ready to Launch My Brand<br>Get Instant Access for $99
                 </a>
             </div>
@@ -517,37 +838,37 @@
     <!-- Features Section -->
     <section class="features">
         <div class="container">
-            <h2 class="section-title">This Blueprint + 6 Modules + 61 Check-list Will Change Your Life</h2>
+            <h2 class="section-title" style="color: var(--text-light);">This Blueprint + 6 Modules + 61 Check-list Will Change Your Life</h2>
             
             <div class="features-grid">
-                <div class="feature">
+                <div class="feature fade-in">
                     <div class="feature-icon">🎯</div>
-                    <h3>MODULE 1: Branding & Identity</h3>
+                    <h3 style="font-size: 1.4em; margin-bottom: 20px;">MODULE 1: Branding & Identity</h3>
                     <p>Define your brand identity, create powerful logos, and build emotional connections through storytelling & visuals.</p>
                 </div>
-                <div class="feature">
+                <div class="feature fade-in">
                     <div class="feature-icon">🎨</div>
-                    <h3>MODULE 2: Design & Production</h3>
+                    <h3 style="font-size: 1.4em; margin-bottom: 20px;">MODULE 2: Design & Production</h3>
                     <p>Master the art of product design and smart production methods that scale with your business growth.</p>
                 </div>
-                <div class="feature">
+                <div class="feature fade-in">
                     <div class="feature-icon">📦</div>
-                    <h3>MODULE 3: Build Collections</h3>
+                    <h3 style="font-size: 1.4em; margin-bottom: 20px;">MODULE 3: Build Collections</h3>
                     <p>Create cohesive product lines that sell consistently and build a loyal customer base.</p>
                 </div>
-                <div class="feature">
+                <div class="feature fade-in">
                     <div class="feature-icon">🛒</div>
-                    <h3>MODULE 4: Online Shop System</h3>
+                    <h3 style="font-size: 1.4em; margin-bottom: 20px;">MODULE 4: Online Shop System</h3>
                     <p>Build a high-converting e-commerce store that generates sales 24/7 on autopilot.</p>
                 </div>
-                <div class="feature">
+                <div class="feature fade-in">
                     <div class="feature-icon">📈</div>
-                    <h3>MODULE 5: Marketing & Reach</h3>
+                    <h3 style="font-size: 1.4em; margin-bottom: 20px;">MODULE 5: Marketing & Reach</h3>
                     <p>Learn proven strategies to attract your first 100 customers and scale your marketing efforts.</p>
                 </div>
-                <div class="feature">
+                <div class="feature fade-in">
                     <div class="feature-icon">🚚</div>
-                    <h3>MODULE 6: Logistics & Support</h3>
+                    <h3 style="font-size: 1.4em; margin-bottom: 20px;">MODULE 6: Logistics & Support</h3>
                     <p>Set up efficient systems for order fulfillment, customer service, and building loyalty.</p>
                 </div>
             </div>
@@ -560,19 +881,19 @@
             <div class="about-content">
                 <div class="about-text">
                     <h2 class="section-title" style="text-align: left;">ABOUT ME</h2>
-                    <h3 style="font-size: 1.5em; margin-bottom: 20px;">I will help you to find a new life as an Entrepreneur</h3>
+                    <h3 style="font-size: 1.6em; margin-bottom: 25px; color: var(--color-primary);">I will help you to find a new life as an Entrepreneur</h3>
                     
-                    <p><strong>Alexander Laude</strong>, founder of the brand Alexander Laude, sold his own line of sneakers for years, generating more than <strong>€5 million in revenue</strong> before he sold it.</p>
+                    <p style="margin-bottom: 20px;"><strong>Alexander Laude</strong>, founder of the brand Alexander Laude, sold his own line of sneakers for years, generating more than <strong>€5 million in revenue</strong> before he sold it.</p>
                     
-                    <p>After successfully selling the company in 2024, he shifted his focus to helping other brands get started — just like he did back in 2016. With a modest budget of only €10,000, he launched his first online store featuring sneakers made in Portugal.</p>
+                    <p style="margin-bottom: 25px;">After successfully selling the company in 2024, he shifted his focus to helping other brands get started — just like he did back in 2016. With a modest budget of only €10,000, he launched his first online store featuring sneakers made in Portugal.</p>
                     
-                    <blockquote style="font-style: italic; margin: 20px 0; padding: 20px; background: #f8f9fa; border-left: 4px solid #667eea;">
+                    <blockquote style="font-style: italic; margin: 25px 0; padding: 25px; background: var(--color-accent); border-left: 5px solid var(--color-primary); border-radius: 10px;">
                         "I see many people offering courses and startup coaching — but how can you teach something you've never actually done yourself? I built a brand with a clear vision. Today, we've grown to over 210,000 followers on social media. And as we all know — sales never lie."
                     </blockquote>
                 </div>
                 <div class="about-image">
                     <div class="alex-photo">AL</div>
-                    <p style="margin-top: 20px; font-weight: 600;">Alexander Laude<br>€5M+ in Sales</p>
+                    <p style="margin-top: 25px; font-weight: 700; font-size: 1.1em; color: var(--color-primary);">Alexander Laude<br>€5M+ in Sales</p>
                 </div>
             </div>
         </div>
@@ -585,32 +906,32 @@
             <p class="section-subtitle">HEAR FROM MY STUDENTS<br><span class="stars">⭐⭐⭐⭐⭐</span> +300 REVIEWS</p>
             
             <div class="testimonials-grid">
-                <div class="testimonial">
+                <div class="testimonial fade-in">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p>"I had no clue where to start — the LeLaude blueprint gave me a clear path. Now I'm running my own small fashion label in Berlin."</p>
                     <strong>Sophie R. - Berlin, Germany</strong>
                 </div>
-                <div class="testimonial">
+                <div class="testimonial fade-in">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p>"Thanks to LeLaude, I launched my first collection in under 3 months. The production contacts and branding tips were gold."</p>
                     <strong>Marco L. - Cologne, Germany</strong>
                 </div>
-                <div class="testimonial">
+                <div class="testimonial fade-in">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p>"The modules saved me months of research. The step-by-step instructions made everything so easy to follow."</p>
                     <strong>Jasmine K. - Los Angeles, USA</strong>
                 </div>
-                <div class="testimonial">
+                <div class="testimonial fade-in">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p>"With all the talk about AI taking over, I felt insecure in my corporate job. LeLaude gave me the tools to finally build something of my own."</p>
                     <strong>Daniel H. - London, UK</strong>
                 </div>
-                <div class="testimonial">
+                <div class="testimonial fade-in">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p>"I was scared of becoming irrelevant in my job. This blueprint showed me I can use my creativity and actually turn it into a business."</p>
                     <strong>Maya L. - New York, USA</strong>
                 </div>
-                <div class="testimonial">
+                <div class="testimonial fade-in">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p>"I felt stuck in my 9-to-5 and afraid of being replaced. LeLaude helped me start something real now I have customers, freedom, and purpose."</p>
                     <strong>Elisa C. - Houston, USA</strong>
@@ -620,16 +941,16 @@
     </section>
 
     <!-- Final CTA Section -->
-    <section class="offer" style="padding: 60px 0;">
+    <section class="offer" style="padding: 80px 0;">
         <div class="container">
             <div class="offer-content">
-                <h2 style="font-size: 2.5em;">LIMITED TIME OFFER</h2>
-                <h3 style="font-size: 2em; margin: 20px 0;">PROVEN. AFFORDABLE.</h3>
-                <p style="font-size: 1.3em;">Proven Blueprint That Saves Time & Money</p>
-                <p>We provide a 64-step, field-tested blueprint that helps entrepreneurs launch their fashion or beauty brand without wasting time or budget on avoidable mistakes.</p>
+                <h2 style="font-size: 2.8em;">LIMITED TIME OFFER</h2>
+                <h3 style="font-size: 2.2em; margin: 25px 0;">PROVEN. AFFORDABLE.</h3>
+                <p style="font-size: 1.4em; margin-bottom: 20px;">Proven Blueprint That Saves Time & Money</p>
+                <p style="font-size: 1.1em; margin-bottom: 40px;">We provide a 64-step, field-tested blueprint that helps entrepreneurs launch their fashion or beauty brand without wasting time or budget on avoidable mistakes.</p>
                 
                 <div class="countdown">
-                    <h3>Offer Expires in 24 Hours</h3>
+                    <h3 style="font-size: 1.8em;">Offer Expires in 24 Hours</h3>
                     <div class="countdown-timer">
                         <div class="time-unit">
                             <span class="time-number" id="hours2">18</span>
@@ -646,7 +967,7 @@
                     </div>
                 </div>
 
-                <a href="https://lelaude.com/checkout" class="hero-cta" style="font-size: 1.4em; padding: 20px 50px;">
+                <a href="https://lelaude.com/checkout" class="hero-cta" style="font-size: 1.5em; padding: 25px 60px;">
                     💌 Get Instant Access for $99
                 </a>
             </div>
@@ -659,40 +980,36 @@
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Click to see the answers.</p>
             
-            <div class="faq-item">
+            <div class="faq-item fade-in">
                 <div class="faq-question" onclick="toggleFaq(this)">
                     💡 What exactly will I get after I purchase?
-                    <span>+</span>
                 </div>
                 <div class="faq-answer">
                     You'll get instant access to the complete Partner with AI Blueprint — including 6 deep-dive modules, 61 actionable checklists, and our proven Brand Launch system. You'll also receive exclusive lifetime access to any future updates!
                 </div>
             </div>
             
-            <div class="faq-item">
+            <div class="faq-item fade-in">
                 <div class="faq-question" onclick="toggleFaq(this)">
                     ⚙️ Do I need tech skills to start?
-                    <span>+</span>
                 </div>
                 <div class="faq-answer">
                     Not at all! The program is designed for beginners. We walk you through every step, even if you've never used AI tools or launched a business before.
                 </div>
             </div>
             
-            <div class="faq-item">
+            <div class="faq-item fade-in">
                 <div class="faq-question" onclick="toggleFaq(this)">
                     ⏳ How much time will I need to complete this?
-                    <span>+</span>
                 </div>
                 <div class="faq-answer">
                     If you can dedicate just 2–4 hours per week, you can finish the blueprint within 30–45 days. But you get lifetime access.
                 </div>
             </div>
             
-            <div class="faq-item">
+            <div class="faq-item fade-in">
                 <div class="faq-question" onclick="toggleFaq(this)">
                     🤖 Will this really help me protect my job from AI?
-                    <span>+</span>
                 </div>
                 <div class="faq-answer">
                     Yes — this program flips the script. Instead of competing against AI, you'll learn how to leverage AI to create a digital income stream and future-proof your career.
@@ -704,8 +1021,8 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Lelaude LLC</p>
-            <p>info@lelaude.com</p>
+            <p style="font-size: 1.1em; margin-bottom: 10px;">&copy; 2025 Lelaude LLC</p>
+            <p style="margin-bottom: 5px;">info@lelaude.com</p>
             <p>Office: 1200 Brickel Ave. Miami, FL USA</p>
         </div>
     </footer>
@@ -714,6 +1031,156 @@
     <a href="https://lelaude.com/checkout" class="sticky-cta">Get Access $99</a>
 
     <script>
+        // Enhanced popup management system
+        let activePopup = null;
+        let popupTimers = {
+            floating: null,
+            ai: null
+        };
+
+        // AI Agent Messages
+        const aiMessages = [
+            "Hi! I'm here to help you launch your AI-powered brand. Do you have any questions about our blueprint?",
+            "🚀 Ready to future-proof your career? Our blueprint has helped hundreds of entrepreneurs succeed!",
+            "💡 Did you know 75% of our students launch their first product within 90 days? Want to join them?",
+            "⚡ This offer expires soon! Don't let AI replace you - learn to work WITH it instead.",
+            "🎯 Still thinking? Our step-by-step blueprint makes it easy even for complete beginners.",
+            "💰 Worried about investment? At just $99, this blueprint pays for itself with your first sale!"
+        ];
+
+        let currentAiMessageIndex = 0;
+
+        // Rotating Keywords for Floating Popup
+        const keywords = [
+            "🚀 Start Your Brand Today!",
+            "💰 Make Money Online!",
+            "🎯 Beat AI Competition!",
+            "⚡ 90-Day Success Plan!",
+            "🔥 Limited Time Offer!",
+            "💎 Transform Your Life!"
+        ];
+        
+        let currentKeywordIndex = 0;
+
+        function hideAllPopups() {
+            const floatingPopup = document.getElementById('floatingPopup');
+            const aiPopup = document.getElementById('aiAgentPopup');
+            
+            if (floatingPopup) {
+                floatingPopup.classList.remove('show');
+            }
+            if (aiPopup) {
+                aiPopup.classList.remove('show');
+            }
+            
+            activePopup = null;
+            
+            // Clear any existing timers
+            Object.values(popupTimers).forEach(timer => {
+                if (timer) clearTimeout(timer);
+            });
+        }
+
+        function showFloatingPopup() {
+            if (activePopup) return; // Don't show if another popup is active
+            
+            const popup = document.getElementById('floatingPopup');
+            if (popup) {
+                popup.classList.add('show');
+                activePopup = 'floating';
+                
+                // Hide after 15 seconds
+                popupTimers.floating = setTimeout(() => {
+                    popup.classList.remove('show');
+                    if (activePopup === 'floating') {
+                        activePopup = null;
+                    }
+                }, 15000);
+            }
+        }
+
+        function showAiAgentPopup() {
+            if (activePopup) return; // Don't show if another popup is active
+            
+            const popup = document.getElementById('aiAgentPopup');
+            const messageElement = document.getElementById('aiMessage');
+            
+            if (popup && messageElement) {
+                // Update message
+                messageElement.textContent = aiMessages[currentAiMessageIndex];
+                currentAiMessageIndex = (currentAiMessageIndex + 1) % aiMessages.length;
+                
+                popup.classList.add('show');
+                activePopup = 'ai';
+                
+                // Auto-hide after 20 seconds
+                popupTimers.ai = setTimeout(() => {
+                    popup.classList.remove('show');
+                    if (activePopup === 'ai') {
+                        activePopup = null;
+                    }
+                }, 20000);
+            }
+        }
+
+        function closeAiPopup() {
+            const popup = document.getElementById('aiAgentPopup');
+            if (popup) {
+                popup.classList.remove('show');
+                if (activePopup === 'ai') {
+                    activePopup = null;
+                }
+                if (popupTimers.ai) {
+                    clearTimeout(popupTimers.ai);
+                    popupTimers.ai = null;
+                }
+            }
+        }
+
+        function rotateKeywords() {
+            const keywordElement = document.getElementById('rotatingKeyword');
+            if (keywordElement) {
+                keywordElement.style.opacity = '0';
+                setTimeout(() => {
+                    currentKeywordIndex = (currentKeywordIndex + 1) % keywords.length;
+                    keywordElement.textContent = keywords[currentKeywordIndex];
+                    keywordElement.style.opacity = '1';
+                }, 300);
+            }
+        }
+
+        // Enhanced popup scheduling system
+        function schedulePopups() {
+            // Show floating popup every 60 seconds
+            setInterval(() => {
+                if (!activePopup) {
+                    showFloatingPopup();
+                }
+            }, 60000);
+
+            // Show AI agent popup every 45 seconds (offset from floating popup)
+            setTimeout(() => {
+                setInterval(() => {
+                    if (!activePopup) {
+                        showAiAgentPopup();
+                    }
+                }, 45000);
+            }, 22500); // Start after 22.5 seconds to offset from floating popup
+
+            // Initial AI popup after 15 seconds
+            setTimeout(() => {
+                if (!activePopup) {
+                    showAiAgentPopup();
+                }
+            }, 15000);
+        }
+
+        // Start popup scheduling
+        schedulePopups();
+
+        // Rotate keywords every 4 seconds
+        setInterval(rotateKeywords, 4000);
+
         // Countdown Timer
         function updateCountdown() {
             const now = new Date().getTime();
@@ -726,26 +1193,25 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
-            
-            // Update second countdown timer
-            if (document.getElementById("hours2")) {
-                document.getElementById("hours2").innerHTML = hours.toString().padStart(2, '0');
-                document.getElementById("minutes2").innerHTML = minutes.toString().padStart(2, '0');
-                document.getElementById("seconds2").innerHTML = seconds.toString().padStart(2, '0');
-            }
+            // Update both countdown timers
+            const updateElement = (id, value) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.innerHTML = value.toString().padStart(2, '0');
+                }
+            };
+
+            updateElement("hours", hours);
+            updateElement("minutes", minutes);
+            updateElement("seconds", seconds);
+            updateElement("hours2", hours);
+            updateElement("minutes2", minutes);
+            updateElement("seconds2", seconds);
 
             if (distance < 0) {
-                document.getElementById("hours").innerHTML = "00";
-                document.getElementById("minutes").innerHTML = "00";
-                document.getElementById("seconds").innerHTML = "00";
-                if (document.getElementById("hours2")) {
-                    document.getElementById("hours2").innerHTML = "00";
-                    document.getElementById("minutes2").innerHTML = "00";
-                    document.getElementById("seconds2").innerHTML = "00";
-                }
+                ['hours', 'minutes', 'seconds', 'hours2', 'minutes2', 'seconds2'].forEach(id => {
+                    updateElement(id, 0);
+                });
             }
         }
 
@@ -756,79 +1222,130 @@
         // FAQ Toggle
         function toggleFaq(element) {
             const answer = element.nextElementSibling;
-            const icon = element.querySelector('span');
             
             if (answer.classList.contains('active')) {
                 answer.classList.remove('active');
-                icon.textContent = '+';
             } else {
                 // Close all other FAQs
                 document.querySelectorAll('.faq-answer').forEach(faq => {
                     faq.classList.remove('active');
                 });
-                document.querySelectorAll('.faq-question span').forEach(span => {
-                    span.textContent = '+';
-                });
-                
                 // Open clicked FAQ
                 answer.classList.add('active');
-                icon.textContent = '−';
             }
         }
 
-        // Smooth scrolling for internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Add scroll animations
+        // Enhanced scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+            entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 150); // Staggered animation
                 }
             });
         }, observerOptions);
 
         // Observe elements for animation
-        document.querySelectorAll('.testimonial, .feature, .module').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
+        document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
 
-        // Track CTA clicks
+        // Enhanced CTA tracking with visual feedback
         document.querySelectorAll('a[href*="checkout"]').forEach(cta => {
             cta.addEventListener('click', function(e) {
-                // Add analytics tracking here if needed
+                // Hide any active popups when CTA is clicked
+                hideAllPopups();
+                
+                // Visual feedback
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                
                 console.log('CTA clicked:', this.textContent.trim());
             });
         });
 
-        // Exit intent popup (optional)
+        // Enhanced exit intent
         let exitIntentShown = false;
         document.addEventListener('mouseleave', function(e) {
-            if (e.clientY <= 0 && !exitIntentShown) {
+            if (e.clientY <= 0 && !exitIntentShown && window.scrollY > 500) {
                 exitIntentShown = true;
-                if (confirm('Wait! Don\'t miss out on this limited-time offer. Get instant access for just $99 (was $399). Click OK to continue to checkout.')) {
-                    window.location.href = 'https://lelaude.com/checkout';
-                }
+                hideAllPopups(); // Hide other popups first
+                
+                // Create enhanced exit intent modal
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 3, 33, 0.9);
+                    z-index: 10000;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    backdrop-filter: blur(10px);
+                `;
+                
+                modal.innerHTML = `
+                    <div style="
+                        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-gradient-2) 100%);
+                        padding: 50px;
+                        border-radius: 25px;
+                        color: white;
+                        text-align: center;
+                        max-width: 550px;
+                        box-shadow: 0 30px 60px rgba(0, 3, 33, 0.5);
+                        border: 2px solid rgba(246, 246, 255, 0.2);
+                    ">
+                        <h2 style="margin-bottom: 25px; font-size: 2.2em; color: var(--color-success);">⚡ Wait! Special Offer</h2>
+                        <p style="margin-bottom: 35px; font-size: 1.3em; line-height: 1.5;">Don't miss out on this limited-time offer!<br>Get instant access for just <strong style="color: var(--color-success);">$99</strong> <span style="text-decoration: line-through; opacity: 0.7;">(was $399)</span></p>
+                        <a href="https://lelaude.com/checkout" style="
+                            background: var(--color-success);
+                            color: white;
+                            padding: 18px 35px;
+                            border-radius: 50px;
+                            text-decoration: none;
+                            font-weight: bold;
+                            margin-right: 15px;
+                            display: inline-block;
+                            font-size: 1.1em;
+                            transition: all 0.3s ease;
+                        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Yes, Get Access Now!</a>
+                        <button onclick="this.parentElement.parentElement.remove()" style="
+                            background: transparent;
+                            color: white;
+                            border: 2px solid rgba(246, 246, 255, 0.5);
+                            padding: 18px 35px;
+                            border-radius: 50px;
+                            cursor: pointer;
+                            font-weight: bold;
+                            font-size: 1.1em;
+                            transition: all 0.3s ease;
+                        " onmouseover="this.style.borderColor='white'" onmouseout="this.style.borderColor='rgba(246, 246, 255, 0.5)'">No Thanks</button>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                // Remove modal when clicking outside
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
             }
         });
 
-        // Mobile touch events for better UX
+        // Mobile touch events
         if ('ontouchstart' in window) {
             document.querySelectorAll('.hero-cta, .feature, .testimonial').forEach(el => {
                 el.addEventListener('touchstart', function() {
@@ -838,6 +1355,25 @@
                     this.style.transform = 'scale(1)';
                 });
             });
+        }
+
+        // Close popups when clicking on CTAs or outside
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('a[href*="checkout"]')) {
+                hideAllPopups();
+            }
+        });
+
+        // Keyboard accessibility for popups
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hideAllPopups();
+            }
+        });
+
+        // Performance optimization - reduce animations on slower devices
+        if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
+            document.documentElement.style.setProperty('--animation-duration', '0.3s');
         }
     </script>
 </body>
