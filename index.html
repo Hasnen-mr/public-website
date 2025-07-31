@@ -5,7 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Launch Your AI-Powered Brand in 90 Days | LeLaude</title>
     <meta name="description" content="Learn how to start your own AI-powered business with our proven blueprint. Transform your career fear into entrepreneurial success.">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --color-primary: #1a1a2e;
+            --color-secondary: #f8f9ff;
+            --color-accent: #eef1ff;
+            --color-gradient-1: #1a1a2e;
+            --color-gradient-2: #16213e;
+            --color-success: #00c896;
+            --color-warning: #ff6b6b;
+            --color-gold: #f39c12;
+            --text-light: #ffffff;
+            --text-dark: #1a1a2e;
+            --text-gray: #64748b;
+            --shadow-light: rgba(255, 255, 255, 0.1);
+            --shadow-dark: rgba(26, 26, 46, 0.15);
+            --shadow-strong: rgba(26, 26, 46, 0.25);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,8 +33,9 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #fafafa;
+            color: var(--text-dark);
+            background: var(--color-secondary);
+            overflow-x: hidden;
         }
 
         .container {
@@ -25,12 +44,308 @@
             padding: 0 20px;
         }
 
+        /* Logo */
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            font-weight: 900;
+            color: var(--text-light);
+            text-decoration: none;
+            background: linear-gradient(45deg, var(--color-gold), #e67e22);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(45deg, var(--color-gold), #e67e22);
+            border-radius: 2px;
+        }
+
+        /* Floating Buttons */
+        .floating-access-btn {
+            position: fixed;
+            left: 25px;
+            bottom: 25px;
+            background: linear-gradient(45deg, var(--color-success), #00a085);
+            color: var(--text-light);
+            padding: 18px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            box-shadow: 0 15px 35px rgba(0, 200, 150, 0.4);
+            z-index: 1000;
+            animation: floatPulse 3s infinite;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .floating-access-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 45px rgba(0, 200, 150, 0.6);
+        }
+
+        .floating-ai-btn {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-gradient-2));
+            color: var(--text-light);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            box-shadow: 0 15px 35px var(--shadow-strong);
+            z-index: 1000;
+            cursor: pointer;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            animation: aiPulse 4s infinite;
+        }
+
+        .floating-ai-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 20px 45px var(--shadow-strong);
+        }
+
+        @keyframes floatPulse {
+            0% { transform: translateY(0) scale(1); box-shadow: 0 15px 35px rgba(0, 200, 150, 0.4); }
+            50% { transform: translateY(-5px) scale(1.02); box-shadow: 0 20px 45px rgba(0, 200, 150, 0.6); }
+            100% { transform: translateY(0) scale(1); box-shadow: 0 15px 35px rgba(0, 200, 150, 0.4); }
+        }
+
+        @keyframes aiPulse {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.05); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* AI Chat Box */
+        .ai-chat-box {
+            position: fixed;
+            right: 25px;
+            bottom: 100px;
+            width: 350px;
+            height: 450px;
+            background: linear-gradient(145deg, var(--color-primary), var(--color-gradient-2));
+            border-radius: 20px;
+            box-shadow: 0 25px 50px var(--shadow-strong);
+            z-index: 1001;
+            backdrop-filter: blur(15px);
+            border: 2px solid var(--shadow-light);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: chatSlideIn 0.4s ease-out;
+        }
+
+        @keyframes chatSlideIn {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .ai-chat-box.show {
+            display: flex;
+        }
+
+        .chat-header {
+            background: linear-gradient(45deg, var(--color-success), #00a085);
+            padding: 20px;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-avatar {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 1.5em;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .chat-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: var(--text-light);
+        }
+
+        .chat-message {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 15px;
+            max-width: 80%;
+            animation: messageSlide 0.3s ease-out;
+        }
+
+        @keyframes messageSlide {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .chat-message.ai {
+            background: var(--color-accent);
+            color: var(--text-dark);
+            border-bottom-left-radius: 5px;
+        }
+
+        .chat-message.user {
+            background: var(--color-success);
+            color: var(--text-light);
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chat-input-area {
+            padding: 20px;
+            background: var(--color-accent);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid var(--shadow-light);
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input:focus {
+            border-color: var(--color-success);
+        }
+
+        .chat-send {
+            background: var(--color-success);
+            color: var(--text-light);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .chat-send:hover {
+            background: #00a085;
+            transform: scale(1.05);
+        }
+
+        /* Auto Popup */
+        .auto-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(145deg, var(--color-primary), var(--color-gradient-2));
+            color: var(--text-light);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 30px 60px var(--shadow-strong);
+            z-index: 1002;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--shadow-light);
+            display: none;
+            animation: popupZoom 0.4s ease-out;
+        }
+
+        @keyframes popupZoom {
+            from {
+                transform: translate(-50%, -50%) scale(0.7);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .auto-popup.show {
+            display: block;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 46, 0.8);
+            z-index: 1001;
+            display: none;
+            backdrop-filter: blur(5px);
+        }
+
+        .popup-overlay.show {
+            display: block;
+        }
+
         /* Header */
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-gradient-2) 100%);
+            color: var(--text-light);
             text-align: center;
-            padding: 60px 0;
+            padding: 100px 0;
             position: relative;
             overflow: hidden;
         }
@@ -42,8 +357,13 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.1);
-            z-index: 1;
+            background: radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(2deg); }
         }
 
         .header-content {
@@ -51,223 +371,331 @@
             z-index: 2;
         }
 
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+            color: var(--color-gold);
+        }
+
         .trust-badge {
-            background: rgba(255,255,255,0.2);
-            padding: 10px 20px;
-            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 18px 35px;
+            border-radius: 50px;
             display: inline-block;
-            margin-bottom: 20px;
-            backdrop-filter: blur(10px);
+            margin-bottom: 40px;
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--shadow-light);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 25px rgba(255, 255, 255, 0.2); }
+            to { box-shadow: 0 0 40px rgba(255, 255, 255, 0.4); }
         }
 
         .headline {
-            font-size: 3.5em;
-            font-weight: 800;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 4.2em;
+            font-weight: 900;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 8px rgba(26, 26, 46, 0.5);
+            background: linear-gradient(45deg, var(--text-light), var(--color-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
         }
 
         .subheadline {
-            font-size: 1.4em;
-            margin-bottom: 30px;
+            font-size: 1.6em;
+            margin-bottom: 50px;
             opacity: 0.95;
+            font-weight: 400;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-cta {
-            background: #ff6b6b;
-            color: white;
-            padding: 18px 40px;
+            background: linear-gradient(45deg, var(--color-success), #00a085);
+            color: var(--text-light);
+            padding: 25px 60px;
             border: none;
-            border-radius: 50px;
-            font-size: 1.2em;
+            border-radius: 60px;
+            font-size: 1.4em;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 10px 30px rgba(255,107,107,0.4);
+            box-shadow: 0 20px 40px rgba(0, 200, 150, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
         }
 
         .hero-cta:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255,107,107,0.6);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(0, 200, 150, 0.5);
         }
 
         /* Social Proof */
         .social-proof {
-            background: white;
-            padding: 60px 0;
+            background: var(--color-secondary);
+            padding: 100px 0;
             text-align: center;
+            position: relative;
         }
 
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 2;
         }
 
         .testimonial {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 15px;
-            border-left: 5px solid #667eea;
-            transition: transform 0.3s ease;
+            background: var(--text-light);
+            padding: 40px;
+            border-radius: 25px;
+            border-left: 6px solid var(--color-primary);
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 35px var(--shadow-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -15px;
+            left: 25px;
+            font-size: 7em;
+            color: rgba(26, 26, 46, 0.05);
+            font-family: serif;
         }
 
         .testimonial:hover {
-            transform: translateY(-5px);
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px var(--shadow-strong);
+            border-left-color: var(--color-success);
         }
 
         .stars {
-            color: #ffd700;
-            font-size: 1.2em;
-            margin-bottom: 15px;
+            color: var(--color-gold);
+            font-size: 1.4em;
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px rgba(243, 156, 18, 0.3);
         }
 
         /* Offer Section */
         .offer {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-            color: white;
-            padding: 80px 0;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-gradient-2) 100%);
+            color: var(--text-light);
+            padding: 120px 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+            animation: rotate 25s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .offer-content {
-            background: rgba(255,255,255,0.1);
-            padding: 50px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 70px;
+            border-radius: 30px;
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--shadow-light);
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 30px 60px rgba(26, 26, 46, 0.3);
         }
 
         .price-container {
-            margin: 40px 0;
+            margin: 50px 0;
         }
 
         .original-price {
-            font-size: 1.5em;
+            font-size: 1.6em;
             text-decoration: line-through;
             opacity: 0.7;
+            margin-bottom: 10px;
         }
 
         .current-price {
-            font-size: 4em;
-            font-weight: 800;
-            color: #fff200;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 5em;
+            font-weight: 900;
+            color: var(--color-success);
+            text-shadow: 0 0 30px rgba(0, 200, 150, 0.5);
+            animation: priceGlow 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes priceGlow {
+            from { text-shadow: 0 0 30px rgba(0, 200, 150, 0.5); }
+            to { text-shadow: 0 0 50px rgba(0, 200, 150, 0.8); }
         }
 
         .countdown {
-            background: rgba(0,0,0,0.3);
-            padding: 30px;
-            border-radius: 15px;
-            margin: 40px 0;
+            background: rgba(26, 26, 46, 0.5);
+            padding: 45px;
+            border-radius: 25px;
+            margin: 60px 0;
+            border: 2px solid var(--shadow-light);
+            box-shadow: 0 20px 40px rgba(26, 26, 46, 0.4);
         }
 
         .countdown-timer {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
         }
 
         .time-unit {
-            background: rgba(255,255,255,0.2);
-            padding: 15px;
-            border-radius: 10px;
-            min-width: 80px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 20px;
+            min-width: 100px;
+            border: 1px solid var(--shadow-light);
+            animation: countdownPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes countdownPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
         }
 
         .time-number {
-            font-size: 2em;
-            font-weight: bold;
+            font-size: 2.5em;
+            font-weight: 900;
             display: block;
+            color: var(--color-success);
+            text-shadow: 0 0 15px rgba(0, 200, 150, 0.5);
         }
 
         /* Features */
         .features {
-            padding: 80px 0;
-            background: white;
+            padding: 120px 0;
+            background: var(--color-secondary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="1" fill="rgba(26,26,46,0.05)"/><circle cx="75" cy="75" r="1" fill="rgba(26,26,46,0.05)"/></svg>');
+            background-size: 250px 250px;
+            animation: backgroundMove 15s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(250px, 250px); }
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
             gap: 40px;
-            margin-top: 50px;
+            margin-top: 80px;
+            position: relative;
+            z-index: 2;
         }
 
         .feature {
             text-align: center;
-            padding: 30px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            padding: 45px;
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            background: var(--text-light);
+            border: 2px solid var(--color-accent);
+            color: var(--text-dark);
+            box-shadow: 0 20px 40px var(--shadow-dark);
         }
 
         .feature:hover {
-            border-color: #667eea;
-            transform: translateY(-5px);
+            background: linear-gradient(145deg, var(--text-light), var(--color-accent));
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px var(--shadow-strong);
+            border-color: var(--color-success);
         }
 
         .feature-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-
-        /* Modules */
-        .modules {
-            background: #f8f9fa;
-            padding: 80px 0;
-        }
-
-        .modules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .module {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .module:hover {
-            transform: translateY(-5px);
-        }
-
-        .module-number {
-            background: #667eea;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-bottom: 20px;
+            font-size: 4em;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 25px rgba(26, 26, 46, 0.2));
         }
 
         /* About */
         .about {
-            padding: 80px 0;
-            background: white;
+            padding: 100px 0;
+            background: var(--text-light);
         }
 
         .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 80px;
             align-items: center;
         }
 
         .about-text {
-            font-size: 1.1em;
+            font-size: 1.15em;
+            line-height: 1.7;
         }
 
         .about-image {
@@ -275,58 +703,68 @@
         }
 
         .alex-photo {
-            width: 300px;
-            height: 300px;
+            width: 320px;
+            height: 320px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-gradient-2) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 3em;
+            color: var(--text-light);
+            font-size: 4em;
+            font-weight: 900;
             margin: 0 auto;
+            box-shadow: 0 25px 50px var(--shadow-strong);
         }
 
         /* Testimonials */
         .testimonials {
-            background: #f8f9fa;
-            padding: 80px 0;
+            background: var(--color-accent);
+            padding: 100px 0;
         }
 
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 35px;
+            margin-top: 60px;
         }
 
         /* FAQ */
         .faq {
-            padding: 80px 0;
-            background: white;
+            padding: 100px 0;
+            background: var(--color-secondary);
         }
 
         .faq-item {
-            background: #f8f9fa;
-            margin-bottom: 15px;
-            border-radius: 10px;
+            background: var(--text-light);
+            margin-bottom: 20px;
+            border-radius: 15px;
             overflow: hidden;
+            box-shadow: 0 8px 25px var(--shadow-dark);
         }
 
         .faq-question {
-            padding: 20px;
-            background: #667eea;
-            color: white;
+            padding: 25px;
+            background: var(--color-primary);
+            color: var(--text-light);
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--color-gradient-2);
         }
 
         .faq-answer {
-            padding: 20px;
+            padding: 25px;
             display: none;
+            line-height: 1.6;
+            color: var(--text-dark);
         }
 
         .faq-answer.active {
@@ -335,38 +773,16 @@
 
         /* Footer */
         .footer {
-            background: #2c3e50;
-            color: white;
-            padding: 40px 0;
+            background: var(--color-primary);
+            color: var(--text-light);
+            padding: 60px 0;
             text-align: center;
-        }
-
-        /* Sticky CTA */
-        .sticky-cta {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #ff6b6b;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 5px 20px rgba(255,107,107,0.4);
-            z-index: 1000;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .headline {
-                font-size: 2.5em;
+                font-size: 2.8em;
             }
             
             .about-content {
@@ -379,55 +795,260 @@
                 align-items: center;
             }
             
-            .modules-grid,
-            .features-grid {
+            .features-grid,
+            .testimonial-grid,
+            .testimonials-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .ai-chat-box {
+                width: 90%;
+                right: 5%;
+                height: 70vh;
+            }
+
+            .auto-popup {
+                width: 95%;
+                padding: 25px;
+            }
+
+            .floating-access-btn {
+                padding: 15px 20px;
+                font-size: 1em;
+            }
+
+            .header-top {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .header-nav {
+                justify-content: center;
+            }
+
+            .logo {
+                font-size: 2em;
+            }
+
+            .offer-content {
+                padding: 40px 25px;
+            }
+
+            .features {
+                padding: 80px 0;
+            }
+
+            .features-grid .feature {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ai-chat-box {
+                width: 95%;
+                right: 2.5%;
+                bottom: 90px;
+                height: 65vh;
+            }
+
+            .floating-ai-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 1.6em;
+            }
+
+            .floating-access-btn {
+                padding: 12px 18px;
+                font-size: 0.9em;
             }
         }
 
         .section-title {
-            font-size: 2.5em;
-            font-weight: 800;
+            font-size: 3.2em;
+            font-weight: 900;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+            text-shadow: 1px 1px 3px rgba(26, 26, 46, 0.1);
+        }
+
+        .section-title.light {
+            color: var(--text-light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .section-subtitle {
             text-align: center;
-            font-size: 1.2em;
-            margin-bottom: 40px;
-            opacity: 0.8;
+            font-size: 1.4em;
+            margin-bottom: 60px;
+            opacity: 0.85;
+            font-weight: 400;
+            color: var(--text-gray);
+        }
+
+        .section-subtitle.light {
+            color: var(--text-light);
+            opacity: 0.9;
         }
 
         .urgency-text {
-            background: rgba(255,255,255,0.2);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            font-weight: 600;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 25px 0;
+            font-weight: 700;
+            border: 1px solid var(--shadow-light);
         }
 
         .benefit-list {
             list-style: none;
-            margin: 20px 0;
+            margin: 30px 0;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .benefit-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.1em;
         }
 
         .benefit-list li:before {
             content: "✅ ";
-            margin-right: 10px;
+            margin-right: 15px;
+            font-size: 1.2em;
+        }
+
+        /* Enhanced Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 12px 16px;
+            background: var(--color-accent);
+            border-radius: 15px;
+            border-bottom-left-radius: 5px;
+            margin-bottom: 15px;
+            max-width: 80%;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--text-gray);
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typingBounce {
+            0%, 80%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Floating Access Button (Left) -->
+    <a href="https://lelaude.com/checkout" class="floating-access-btn">
+        💳 Get Access $99
+    </a>
+
+    <!-- Floating AI Button (Right) -->
+    <div class="floating-ai-btn" onclick="toggleChat()">
+        🤖
+    </div>
+
+    <!-- AI Chat Box -->
+    <div class="ai-chat-box" id="aiChatBox">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-avatar">🤖</div>
+                <div>
+                    <div style="font-weight: 700;">AI Assistant</div>
+                    <div style="font-size: 0.9em; opacity: 0.9;">Online now</div>
+                </div>
+            </div>
+            <button class="chat-close" onclick="closeChat()">×</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message ai">
+                Hi! 👋 I'm here to help you launch your AI-powered brand. How can I assist you today?
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+            <button class="chat-send" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <!-- Auto Popup Overlay -->
+    <div class="popup-overlay" id="popupOverlay" onclick="closeAutoPopup()"></div>
+
+    <!-- Auto Popup -->
+    <div class="auto-popup" id="autoPopup">
+        <h2 style="font-size: 2.2em; margin-bottom: 20px; color: var(--color-success);">🚀 Special Limited Offer!</h2>
+        <p style="font-size: 1.3em; margin-bottom: 25px; line-height: 1.5;">Don't let AI replace you - learn to work WITH it!<br>Get our complete blueprint for just <strong style="color: var(--color-gold);">$99</strong> (was $399)</p>
+        <a href="https://lelaude.com/checkout" style="
+            background: var(--color-success);
+            color: white;
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 15px;
+            display: inline-block;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Yes, Get Access Now!</a>
+        <button onclick="closeAutoPopup()" style="
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            padding: 18px 35px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        " onmouseover="this.style.borderColor='white'" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.5)'">Maybe Later</button>
+    </div>
+
     <!-- Header Section -->
     <section class="header">
         <div class="container">
             <div class="header-content">
+                <div class="header-top">
+                    <a href="#" class="logo">LeLaude</a>
+                    <nav class="header-nav">
+                        <a href="#about" class="nav-link">About</a>
+                        <a href="#features" class="nav-link">Features</a>
+                        <a href="#testimonials" class="nav-link">Reviews</a>
+                    </nav>
+                </div>
                 <div class="trust-badge">
                     <span class="stars">⭐⭐⭐⭐⭐</span>
                     Trusted by Hundreds of Entrepreneurs
@@ -447,12 +1068,12 @@
             <p class="section-subtitle">REAL PEOPLE, REAL RESULTS!</p>
             
             <div class="testimonial-grid">
-                <div class="testimonial">
+                <div class="testimonial fade-in">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p>"The course didn't just teach me — it pushed me. The mindset and structure helped me go from dreaming to doing."</p>
                     <strong>Natalie T. - New York, USA</strong>
                 </div>
-                <div class="testimonial">
+                <div class="testimonial fade-in">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p>"AI had me panicking about the future. Now I run a small online brand — and I see technology as a tool, not a threat."</p>
                     <strong>Jonas F. - Hamburg, Germany</strong>
@@ -466,14 +1087,14 @@
         <div class="container">
             <div class="offer-content">
                 <div class="stars">⭐⭐⭐⭐⭐ 5 Star-rated</div>
-                <h2 style="font-size: 2.5em; margin: 20px 0;">Learn How to Use AI to Launch Your Own Business</h2>
+                <h2 style="font-size: 2.8em; margin: 25px 0;">Learn How to Use AI to Launch Your Own Business</h2>
                 
                 <div class="urgency-text">
                     <strong>AI may replace 300 million jobs (Goldman Sachs via BBC)</strong>
                 </div>
 
-                <h3 style="font-size: 1.8em; margin: 30px 0;">🚀 What You'll Get:</h3>
-                <p style="font-size: 1.3em; font-weight: 600;">Blueprint + 6 Modules + 61 Check-list</p>
+                <h3 style="font-size: 2em; margin: 35px 0;">🚀 What You'll Get:</h3>
+                <p style="font-size: 1.4em; font-weight: 700; margin-bottom: 30px;">Blueprint + 6 Modules + 61 Check-list</p>
                 
                 <ul class="benefit-list">
                     <li><strong>Branding & Logo</strong> – Build a powerful identity that people remember</li>
@@ -490,7 +1111,7 @@
                 </div>
 
                 <div class="countdown">
-                    <h3>Offer Expires in 24 Hours</h3>
+                    <h3 style="font-size: 1.8em;">Offer Expires in 24 Hours</h3>
                     <div class="countdown-timer">
                         <div class="time-unit">
                             <span class="time-number" id="hours">18</span>
@@ -507,7 +1128,7 @@
                     </div>
                 </div>
 
-                <a href="https://lelaude.com/checkout" class="hero-cta" style="font-size: 1.4em; padding: 20px 50px;">
+                <a href="https://lelaude.com/checkout" class="hero-cta" style="font-size: 1.5em; padding: 25px 60px;">
                     🚀 Yes! I'm Ready to Launch My Brand<br>Get Instant Access for $99
                 </a>
             </div>
@@ -515,39 +1136,39 @@
     </section>
 
     <!-- Features Section -->
-    <section class="features">
+    <section class="features" id="features">
         <div class="container">
             <h2 class="section-title">This Blueprint + 6 Modules + 61 Check-list Will Change Your Life</h2>
             
             <div class="features-grid">
-                <div class="feature">
+                <div class="feature fade-in">
                     <div class="feature-icon">🎯</div>
-                    <h3>MODULE 1: Branding & Identity</h3>
+                    <h3 style="font-size: 1.4em; margin-bottom: 20px;">MODULE 1: Branding & Identity</h3>
                     <p>Define your brand identity, create powerful logos, and build emotional connections through storytelling & visuals.</p>
                 </div>
-                <div class="feature">
+                <div class="feature fade-in">
                     <div class="feature-icon">🎨</div>
-                    <h3>MODULE 2: Design & Production</h3>
+                    <h3 style="font-size: 1.4em; margin-bottom: 20px;">MODULE 2: Design & Production</h3>
                     <p>Master the art of product design and smart production methods that scale with your business growth.</p>
                 </div>
-                <div class="feature">
+                <div class="feature fade-in">
                     <div class="feature-icon">📦</div>
-                    <h3>MODULE 3: Build Collections</h3>
+                    <h3 style="font-size: 1.4em; margin-bottom: 20px;">MODULE 3: Build Collections</h3>
                     <p>Create cohesive product lines that sell consistently and build a loyal customer base.</p>
                 </div>
-                <div class="feature">
+                <div class="feature fade-in">
                     <div class="feature-icon">🛒</div>
-                    <h3>MODULE 4: Online Shop System</h3>
+                    <h3 style="font-size: 1.4em; margin-bottom: 20px;">MODULE 4: Online Shop System</h3>
                     <p>Build a high-converting e-commerce store that generates sales 24/7 on autopilot.</p>
                 </div>
-                <div class="feature">
+                <div class="feature fade-in">
                     <div class="feature-icon">📈</div>
-                    <h3>MODULE 5: Marketing & Reach</h3>
+                    <h3 style="font-size: 1.4em; margin-bottom: 20px;">MODULE 5: Marketing & Reach</h3>
                     <p>Learn proven strategies to attract your first 100 customers and scale your marketing efforts.</p>
                 </div>
-                <div class="feature">
+                <div class="feature fade-in">
                     <div class="feature-icon">🚚</div>
-                    <h3>MODULE 6: Logistics & Support</h3>
+                    <h3 style="font-size: 1.4em; margin-bottom: 20px;">MODULE 6: Logistics & Support</h3>
                     <p>Set up efficient systems for order fulfillment, customer service, and building loyalty.</p>
                 </div>
             </div>
@@ -555,62 +1176,62 @@
     </section>
 
     <!-- About Section -->
-    <section class="about">
+    <section class="about" id="about">
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
                     <h2 class="section-title" style="text-align: left;">ABOUT ME</h2>
-                    <h3 style="font-size: 1.5em; margin-bottom: 20px;">I will help you to find a new life as an Entrepreneur</h3>
+                    <h3 style="font-size: 1.6em; margin-bottom: 25px; color: var(--color-primary);">I will help you to find a new life as an Entrepreneur</h3>
                     
-                    <p><strong>Alexander Laude</strong>, founder of the brand Alexander Laude, sold his own line of sneakers for years, generating more than <strong>€5 million in revenue</strong> before he sold it.</p>
+                    <p style="margin-bottom: 20px;"><strong>Alexander Laude</strong>, founder of the brand Alexander Laude, sold his own line of sneakers for years, generating more than <strong>€5 million in revenue</strong> before he sold it.</p>
                     
-                    <p>After successfully selling the company in 2024, he shifted his focus to helping other brands get started — just like he did back in 2016. With a modest budget of only €10,000, he launched his first online store featuring sneakers made in Portugal.</p>
+                    <p style="margin-bottom: 25px;">After successfully selling the company in 2024, he shifted his focus to helping other brands get started — just like he did back in 2016. With a modest budget of only €10,000, he launched his first online store featuring sneakers made in Portugal.</p>
                     
-                    <blockquote style="font-style: italic; margin: 20px 0; padding: 20px; background: #f8f9fa; border-left: 4px solid #667eea;">
+                    <blockquote style="font-style: italic; margin: 25px 0; padding: 25px; background: var(--color-accent); border-left: 5px solid var(--color-primary); border-radius: 10px;">
                         "I see many people offering courses and startup coaching — but how can you teach something you've never actually done yourself? I built a brand with a clear vision. Today, we've grown to over 210,000 followers on social media. And as we all know — sales never lie."
                     </blockquote>
                 </div>
                 <div class="about-image">
                     <div class="alex-photo">AL</div>
-                    <p style="margin-top: 20px; font-weight: 600;">Alexander Laude<br>€5M+ in Sales</p>
+                    <p style="margin-top: 25px; font-weight: 700; font-size: 1.1em; color: var(--color-primary);">Alexander Laude<br>€5M+ in Sales</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials">
+    <section class="testimonials" id="testimonials">
         <div class="container">
             <h2 class="section-title">Real People. Real Success.</h2>
             <p class="section-subtitle">HEAR FROM MY STUDENTS<br><span class="stars">⭐⭐⭐⭐⭐</span> +300 REVIEWS</p>
             
             <div class="testimonials-grid">
-                <div class="testimonial">
+                <div class="testimonial fade-in">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p>"I had no clue where to start — the LeLaude blueprint gave me a clear path. Now I'm running my own small fashion label in Berlin."</p>
                     <strong>Sophie R. - Berlin, Germany</strong>
                 </div>
-                <div class="testimonial">
+                <div class="testimonial fade-in">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p>"Thanks to LeLaude, I launched my first collection in under 3 months. The production contacts and branding tips were gold."</p>
                     <strong>Marco L. - Cologne, Germany</strong>
                 </div>
-                <div class="testimonial">
+                <div class="testimonial fade-in">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p>"The modules saved me months of research. The step-by-step instructions made everything so easy to follow."</p>
                     <strong>Jasmine K. - Los Angeles, USA</strong>
                 </div>
-                <div class="testimonial">
+                <div class="testimonial fade-in">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p>"With all the talk about AI taking over, I felt insecure in my corporate job. LeLaude gave me the tools to finally build something of my own."</p>
                     <strong>Daniel H. - London, UK</strong>
                 </div>
-                <div class="testimonial">
+                <div class="testimonial fade-in">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p>"I was scared of becoming irrelevant in my job. This blueprint showed me I can use my creativity and actually turn it into a business."</p>
                     <strong>Maya L. - New York, USA</strong>
                 </div>
-                <div class="testimonial">
+                <div class="testimonial fade-in">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p>"I felt stuck in my 9-to-5 and afraid of being replaced. LeLaude helped me start something real now I have customers, freedom, and purpose."</p>
                     <strong>Elisa C. - Houston, USA</strong>
@@ -620,16 +1241,16 @@
     </section>
 
     <!-- Final CTA Section -->
-    <section class="offer" style="padding: 60px 0;">
+    <section class="offer" style="padding: 80px 0;">
         <div class="container">
             <div class="offer-content">
-                <h2 style="font-size: 2.5em;">LIMITED TIME OFFER</h2>
-                <h3 style="font-size: 2em; margin: 20px 0;">PROVEN. AFFORDABLE.</h3>
-                <p style="font-size: 1.3em;">Proven Blueprint That Saves Time & Money</p>
-                <p>We provide a 64-step, field-tested blueprint that helps entrepreneurs launch their fashion or beauty brand without wasting time or budget on avoidable mistakes.</p>
+                <h2 style="font-size: 2.8em;">LIMITED TIME OFFER</h2>
+                <h3 style="font-size: 2.2em; margin: 25px 0;">PROVEN. AFFORDABLE.</h3>
+                <p style="font-size: 1.4em; margin-bottom: 20px;">Proven Blueprint That Saves Time & Money</p>
+                <p style="font-size: 1.1em; margin-bottom: 40px;">We provide a 64-step, field-tested blueprint that helps entrepreneurs launch their fashion or beauty brand without wasting time or budget on avoidable mistakes.</p>
                 
                 <div class="countdown">
-                    <h3>Offer Expires in 24 Hours</h3>
+                    <h3 style="font-size: 1.8em;">Offer Expires in 24 Hours</h3>
                     <div class="countdown-timer">
                         <div class="time-unit">
                             <span class="time-number" id="hours2">18</span>
@@ -646,7 +1267,7 @@
                     </div>
                 </div>
 
-                <a href="https://lelaude.com/checkout" class="hero-cta" style="font-size: 1.4em; padding: 20px 50px;">
+                <a href="https://lelaude.com/checkout" class="hero-cta" style="font-size: 1.5em; padding: 25px 60px;">
                     💌 Get Instant Access for $99
                 </a>
             </div>
@@ -659,40 +1280,36 @@
             <h2 class="section-title">Frequently Asked Questions</h2>
             <p class="section-subtitle">Click to see the answers.</p>
             
-            <div class="faq-item">
+            <div class="faq-item fade-in">
                 <div class="faq-question" onclick="toggleFaq(this)">
                     💡 What exactly will I get after I purchase?
-                    <span>+</span>
                 </div>
                 <div class="faq-answer">
                     You'll get instant access to the complete Partner with AI Blueprint — including 6 deep-dive modules, 61 actionable checklists, and our proven Brand Launch system. You'll also receive exclusive lifetime access to any future updates!
                 </div>
             </div>
             
-            <div class="faq-item">
+            <div class="faq-item fade-in">
                 <div class="faq-question" onclick="toggleFaq(this)">
                     ⚙️ Do I need tech skills to start?
-                    <span>+</span>
                 </div>
                 <div class="faq-answer">
                     Not at all! The program is designed for beginners. We walk you through every step, even if you've never used AI tools or launched a business before.
                 </div>
             </div>
             
-            <div class="faq-item">
+            <div class="faq-item fade-in">
                 <div class="faq-question" onclick="toggleFaq(this)">
                     ⏳ How much time will I need to complete this?
-                    <span>+</span>
                 </div>
                 <div class="faq-answer">
                     If you can dedicate just 2–4 hours per week, you can finish the blueprint within 30–45 days. But you get lifetime access.
                 </div>
             </div>
             
-            <div class="faq-item">
+            <div class="faq-item fade-in">
                 <div class="faq-question" onclick="toggleFaq(this)">
                     🤖 Will this really help me protect my job from AI?
-                    <span>+</span>
                 </div>
                 <div class="faq-answer">
                     Yes — this program flips the script. Instead of competing against AI, you'll learn how to leverage AI to create a digital income stream and future-proof your career.
@@ -704,16 +1321,156 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Lelaude LLC</p>
-            <p>info@lelaude.com</p>
+            <p style="font-size: 1.1em; margin-bottom: 10px;">&copy; 2025 Lelaude LLC</p>
+            <p style="margin-bottom: 5px;">info@lelaude.com</p>
             <p>Office: 1200 Brickel Ave. Miami, FL USA</p>
         </div>
     </footer>
 
-    <!-- Sticky CTA -->
-    <a href="https://lelaude.com/checkout" class="sticky-cta">Get Access $99</a>
-
     <script>
+        // AI Chat System
+        let conversationStep = 0;
+        let userHasMessaged = false;
+        const aiResponses = [
+            "🚀 That's great! Our blueprint has helped over 500+ entrepreneurs launch successful brands. Are you ready to start your own AI-powered business?",
+            "💡 Perfect! With our proven system, 75% of students launch their first product within 90 days. The best part? You don't need any technical experience!",
+            "🎯 Awesome! Here's a special offer just for you - Get instant access to our complete blueprint for only $99 (normally $399). This offer expires soon!"
+        ];
+
+        function toggleChat() {
+            const chatBox = document.getElementById('aiChatBox');
+            chatBox.classList.toggle('show');
+        }
+
+        function closeChat() {
+            const chatBox = document.getElementById('aiChatBox');
+            chatBox.classList.remove('show');
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const messagesContainer = document.getElementById('chatMessages');
+            const message = input.value.trim();
+
+            if (message === '') return;
+
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'chat-message user';
+            userMessage.textContent = message;
+            messagesContainer.appendChild(userMessage);
+
+            // Clear input
+            input.value = '';
+
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Set flag that user has messaged
+            if (!userHasMessaged) {
+                userHasMessaged = true;
+                startAutomatedResponses();
+            }
+        }
+
+        function addTypingIndicator() {
+            const messagesContainer = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function addAiMessage(message, isLastMessage = false) {
+            const messagesContainer = document.getElementById('chatMessages');
+            
+            // Remove typing indicator
+            removeTypingIndicator();
+
+            // Add AI message
+            const aiMessage = document.createElement('div');
+            aiMessage.className = 'chat-message ai';
+            aiMessage.textContent = message;
+            messagesContainer.appendChild(aiMessage);
+
+            // Add special offer link if it's the last message
+            if (isLastMessage) {
+                setTimeout(() => {
+                    const offerMessage = document.createElement('div');
+                    offerMessage.className = 'chat-message ai';
+                    offerMessage.innerHTML = `
+                        <strong>🎁 Special Offer Link:</strong><br>
+                        <a href="https://lelaude.com/checkout" style="
+                            background: var(--color-success);
+                            color: white;
+                            padding: 10px 20px;
+                            border-radius: 25px;
+                            text-decoration: none;
+                            font-weight: 600;
+                            display: inline-block;
+                            margin-top: 10px;
+                            transition: all 0.3s ease;
+                        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                            🚀 Get Access Now - $99 Only!
+                        </a>
+                    `;
+                    messagesContainer.appendChild(offerMessage);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 1000);
+            }
+
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function startAutomatedResponses() {
+            const delays = [2000, 4000, 6000]; // 2s, 4s, 6s delays
+
+            aiResponses.forEach((response, index) => {
+                setTimeout(() => {
+                    addTypingIndicator();
+                    
+                    setTimeout(() => {
+                        const isLastMessage = index === aiResponses.length - 1;
+                        addAiMessage(response, isLastMessage);
+                    }, 1500); // Typing delay
+                }, delays[index]);
+            });
+        }
+
+        // Auto Popup System
+        function showAutoPopup() {
+            const popup = document.getElementById('autoPopup');
+            const overlay = document.getElementById('popupOverlay');
+            popup.classList.add('show');
+            overlay.classList.add('show');
+        }
+
+        function closeAutoPopup() {
+            const popup = document.getElementById('autoPopup');
+            const overlay = document.getElementById('popupOverlay');
+            popup.classList.remove('show');
+            overlay.classList.remove('show');
+        }
+
+        // Show auto popup after 40 seconds
+        setTimeout(showAutoPopup, 40000);
+
         // Countdown Timer
         function updateCountdown() {
             const now = new Date().getTime();
@@ -726,26 +1483,25 @@
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
-            
-            // Update second countdown timer
-            if (document.getElementById("hours2")) {
-                document.getElementById("hours2").innerHTML = hours.toString().padStart(2, '0');
-                document.getElementById("minutes2").innerHTML = minutes.toString().padStart(2, '0');
-                document.getElementById("seconds2").innerHTML = seconds.toString().padStart(2, '0');
-            }
+            // Update both countdown timers
+            const updateElement = (id, value) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.innerHTML = value.toString().padStart(2, '0');
+                }
+            };
+
+            updateElement("hours", hours);
+            updateElement("minutes", minutes);
+            updateElement("seconds", seconds);
+            updateElement("hours2", hours);
+            updateElement("minutes2", minutes);
+            updateElement("seconds2", seconds);
 
             if (distance < 0) {
-                document.getElementById("hours").innerHTML = "00";
-                document.getElementById("minutes").innerHTML = "00";
-                document.getElementById("seconds").innerHTML = "00";
-                if (document.getElementById("hours2")) {
-                    document.getElementById("hours2").innerHTML = "00";
-                    document.getElementById("minutes2").innerHTML = "00";
-                    document.getElementById("seconds2").innerHTML = "00";
-                }
+                ['hours', 'minutes', 'seconds', 'hours2', 'minutes2', 'seconds2'].forEach(id => {
+                    updateElement(id, 0);
+                });
             }
         }
 
@@ -756,79 +1512,62 @@
         // FAQ Toggle
         function toggleFaq(element) {
             const answer = element.nextElementSibling;
-            const icon = element.querySelector('span');
             
             if (answer.classList.contains('active')) {
                 answer.classList.remove('active');
-                icon.textContent = '+';
             } else {
                 // Close all other FAQs
                 document.querySelectorAll('.faq-answer').forEach(faq => {
                     faq.classList.remove('active');
                 });
-                document.querySelectorAll('.faq-question span').forEach(span => {
-                    span.textContent = '+';
-                });
-                
                 // Open clicked FAQ
                 answer.classList.add('active');
-                icon.textContent = '−';
             }
         }
 
-        // Smooth scrolling for internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Add scroll animations
+        // Enhanced scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
+            entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 150); // Staggered animation
                 }
             });
         }, observerOptions);
 
         // Observe elements for animation
-        document.querySelectorAll('.testimonial, .feature, .module').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
+        document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
 
-        // Track CTA clicks
+        // Enhanced CTA tracking with visual feedback
         document.querySelectorAll('a[href*="checkout"]').forEach(cta => {
             cta.addEventListener('click', function(e) {
-                // Add analytics tracking here if needed
+                // Visual feedback
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                
                 console.log('CTA clicked:', this.textContent.trim());
             });
         });
 
-        // Exit intent popup (optional)
-        let exitIntentShown = false;
-        document.addEventListener('mouseleave', function(e) {
-            if (e.clientY <= 0 && !exitIntentShown) {
-                exitIntentShown = true;
-                if (confirm('Wait! Don\'t miss out on this limited-time offer. Get instant access for just $99 (was $399). Click OK to continue to checkout.')) {
-                    window.location.href = 'https://lelaude.com/checkout';
-                }
+        // Close popups on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeAutoPopup();
+                closeChat();
             }
         });
 
-        // Mobile touch events for better UX
+        // Mobile touch events
         if ('ontouchstart' in window) {
             document.querySelectorAll('.hero-cta, .feature, .testimonial').forEach(el => {
                 el.addEventListener('touchstart', function() {
@@ -839,6 +1578,25 @@
                 });
             });
         }
+
+        // Performance optimization
+        if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
+            document.documentElement.style.setProperty('--animation-duration', '0.3s');
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
