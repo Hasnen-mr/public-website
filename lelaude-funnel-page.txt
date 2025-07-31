@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Launch Your AI-Powered Brand in 90 Days | LeLaude</title>
+    <meta name="description" content="Learn how to start your own AI-powered business with our proven blueprint. Transform your career fear into entrepreneurial success.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Floating Popup */
+        .floating-popup {
+            position: fixed;
+            left: -200px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(145deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+            z-index: 1001;
+            width: 250px;
+            animation: slideInOut 15s infinite;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes slideInOut {
+            0% { left: -200px; }
+            10% { left: 20px; }
+            90% { left: 20px; }
+            100% { left: -200px; }
+        }
+
+        .popup-keyword {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .popup-cta {
+            background: #ff6b6b;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .popup-cta:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .trust-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 30px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 20px rgba(255,255,255,0.3); }
+            to { box-shadow: 0 0 30px rgba(255,255,255,0.6); }
+        }
+
+        .headline {
+            font-size: 3.8em;
+            font-weight: 900;
+            margin-bottom: 25px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subheadline {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 60px;
+            font-size: 1.3em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 15px 35px rgba(255,107,107,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .hero-cta:hover::before {
+            left: 100%;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(255,107,107,0.6);
+        }
+
+        /* Social Proof */
+        .social-proof {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .social-proof::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon points="50,0 61,35 100,35 69,57 80,91 50,70 20,91 31,57 0,35 39,35" fill="rgba(255,215,0,0.05)"/></svg>');
+            background-size: 100px 100px;
+            opacity: 0.3;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            padding: 35px;
+            border-radius: 20px;
+            border-left: 5px solid #667eea;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 6em;
+            color: rgba(102, 126, 234, 0.1);
+            font-family: serif;
+        }
+
+        .testimonial:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .stars {
+            color: #ffd700;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Offer Section */
+        .offer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .offer-content {
+            background: rgba(255,255,255,0.15);
+            padding: 60px;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+        }
+
+        .price-container {
+            margin: 40px 0;
+        }
+
+        .original-price {
+            font-size: 1.5em;
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .current-price {
+            font-size: 4.5em;
+            font-weight: 900;
+            color: #00d4aa;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: priceGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes priceGlow {
+            from { text-shadow: 0 0 20px rgba(0, 212, 170, 0.5); }
+            to { text-shadow: 0 0 30px rgba(0, 212, 170, 0.8); }
+        }
+
+        .countdown {
+            background: linear-gradient(145deg, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+            padding: 40px;
+            border-radius: 20px;
+            margin: 50px 0;
+            border: 2px solid rgba(255,255,255,0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .time-unit {
+            background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+            padding: 20px;
+            border-radius: 15px;
+            min-width: 90px;
+            border: 1px solid rgba(255,255,255,0.3);
+            animation: countdownPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes countdownPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .time-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            display: block;
+            color: #00d4aa;
+            text-shadow: 0 0 10px rgba(0, 212, 170, 0.5);
+        }
+
+        /* Features */
+        .features {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="80" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 200px 200px;
+            animation: backgroundMove 10s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(200px, 200px); }
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 40px;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255,255,255,0.2);
+            color: white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .feature:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .feature-icon {
+            font-size: 3.5em;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.5));
+        }
+
+        /* Modules */
+        .modules {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .module {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .module:hover {
+            transform: translateY(-5px);
+        }
+
+        .module-number {
+            background: #667eea;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* About */
+        .about {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1em;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .alex-photo {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3em;
+            margin: 0 auto;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .faq-item {
+            background: #f8f9fa;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: #667eea;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 20px;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #00d4aa, #00b894);
+            color: white;
+            padding: 18px 30px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.4);
+            z-index: 1000;
+            animation: stickyPulse 3s infinite;
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes stickyPulse {
+            0% { transform: scale(1); box-shadow: 0 10px 30px rgba(0, 212, 170, 0.4); }
+            50% { transform: scale(1.1); box-shadow: 0 15px 40px rgba(0, 212, 170, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 10px 30px rgba(0, 212, 170, 0.4); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .headline {
+                font-size: 2.5em;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .countdown-timer {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .modules-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-title {
+            font-size: 2.8em;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 25px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3em;
+            margin-bottom: 50px;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        .urgency-text {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+
+        .benefit-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .benefit-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .benefit-list li:before {
+            content: "✅ ";
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Popup -->
+    <div class="floating-popup" id="floatingPopup">
+        <div class="popup-keyword" id="rotatingKeyword">🚀 Start Your Brand Today!</div>
+        <a href="https://lelaude.com/checkout" class="popup-cta">Checkout Now</a>
+    </div>
+
+    <!-- Header Section -->
+    <section class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="trust-badge">
+                    <span class="stars">⭐⭐⭐⭐⭐</span>
+                    Trusted by Hundreds of Entrepreneurs
+                </div>
+                <h1 class="headline">Are you afraid of losing your job because of AI?</h1>
+                <p class="subheadline">Learn How to Start Your Own Business With This Step-by-Step Blueprint<br>
+                Launch your own AI-powered brand in 90 days – even with zero experience.</p>
+                <a href="https://lelaude.com/checkout" class="hero-cta">🚀 Get Instant Access for $99</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof">
+        <div class="container">
+            <h2 class="section-title">I've Sold Millions Online - Now I'll Help You Do the Same.</h2>
+            <p class="section-subtitle">REAL PEOPLE, REAL RESULTS!</p>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"The course didn't just teach me — it pushed me. The mindset and structure helped me go from dreaming to doing."</p>
+                    <strong>Natalie T. - New York, USA</strong>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"AI had me panicking about the future. Now I run a small online brand — and I see technology as a tool, not a threat."</p>
+                    <strong>Jonas F. - Hamburg, Germany</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offer Section -->
+    <section class="offer">
+        <div class="container">
+            <div class="offer-content">
+                <div class="stars">⭐⭐⭐⭐⭐ 5 Star-rated</div>
+                <h2 style="font-size: 2.5em; margin: 20px 0;">Learn How to Use AI to Launch Your Own Business</h2>
+                
+                <div class="urgency-text">
+                    <strong>AI may replace 300 million jobs (Goldman Sachs via BBC)</strong>
+                </div>
+
+                <h3 style="font-size: 1.8em; margin: 30px 0;">🚀 What You'll Get:</h3>
+                <p style="font-size: 1.3em; font-weight: 600;">Blueprint + 6 Modules + 61 Check-list</p>
+                
+                <ul class="benefit-list">
+                    <li><strong>Branding & Logo</strong> – Build a powerful identity that people remember</li>
+                    <li><strong>Design & Production</strong> – Create your product the smart, scalable way</li>
+                    <li><strong>Build a Collection</strong> – Turn single items into a consistent product line</li>
+                    <li><strong>Online Shop System</strong> – Launch a store that sells while you sleep</li>
+                    <li><strong>Marketing & Reach</strong> – Learn how to attract your first 100 customers</li>
+                    <li><strong>Logistics & Customers</strong> – Set up the systems to deliver and support with ease</li>
+                </ul>
+
+                <div class="price-container">
+                    <div class="original-price">Was $399</div>
+                    <div class="current-price">Only $99</div>
+                </div>
+
+                <div class="countdown">
+                    <h3>Offer Expires in 24 Hours</h3>
+                    <div class="countdown-timer">
+                        <div class="time-unit">
+                            <span class="time-number" id="hours">18</span>
+                            <span>hours</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-number" id="minutes">7</span>
+                            <span>minutes</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-number" id="seconds">0</span>
+                            <span>seconds</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://lelaude.com/checkout" class="hero-cta" style="font-size: 1.4em; padding: 20px 50px;">
+                    🚀 Yes! I'm Ready to Launch My Brand<br>Get Instant Access for $99
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">This Blueprint + 6 Modules + 61 Check-list Will Change Your Life</h2>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>MODULE 1: Branding & Identity</h3>
+                    <p>Define your brand identity, create powerful logos, and build emotional connections through storytelling & visuals.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎨</div>
+                    <h3>MODULE 2: Design & Production</h3>
+                    <p>Master the art of product design and smart production methods that scale with your business growth.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📦</div>
+                    <h3>MODULE 3: Build Collections</h3>
+                    <p>Create cohesive product lines that sell consistently and build a loyal customer base.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🛒</div>
+                    <h3>MODULE 4: Online Shop System</h3>
+                    <p>Build a high-converting e-commerce store that generates sales 24/7 on autopilot.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📈</div>
+                    <h3>MODULE 5: Marketing & Reach</h3>
+                    <p>Learn proven strategies to attract your first 100 customers and scale your marketing efforts.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🚚</div>
+                    <h3>MODULE 6: Logistics & Support</h3>
+                    <p>Set up efficient systems for order fulfillment, customer service, and building loyalty.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title" style="text-align: left;">ABOUT ME</h2>
+                    <h3 style="font-size: 1.5em; margin-bottom: 20px;">I will help you to find a new life as an Entrepreneur</h3>
+                    
+                    <p><strong>Alexander Laude</strong>, founder of the brand Alexander Laude, sold his own line of sneakers for years, generating more than <strong>€5 million in revenue</strong> before he sold it.</p>
+                    
+                    <p>After successfully selling the company in 2024, he shifted his focus to helping other brands get started — just like he did back in 2016. With a modest budget of only €10,000, he launched his first online store featuring sneakers made in Portugal.</p>
+                    
+                    <blockquote style="font-style: italic; margin: 20px 0; padding: 20px; background: #f8f9fa; border-left: 4px solid #667eea;">
+                        "I see many people offering courses and startup coaching — but how can you teach something you've never actually done yourself? I built a brand with a clear vision. Today, we've grown to over 210,000 followers on social media. And as we all know — sales never lie."
+                    </blockquote>
+                </div>
+                <div class="about-image">
+                    <div class="alex-photo">AL</div>
+                    <p style="margin-top: 20px; font-weight: 600;">Alexander Laude<br>€5M+ in Sales</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Real People. Real Success.</h2>
+            <p class="section-subtitle">HEAR FROM MY STUDENTS<br><span class="stars">⭐⭐⭐⭐⭐</span> +300 REVIEWS</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"I had no clue where to start — the LeLaude blueprint gave me a clear path. Now I'm running my own small fashion label in Berlin."</p>
+                    <strong>Sophie R. - Berlin, Germany</strong>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Thanks to LeLaude, I launched my first collection in under 3 months. The production contacts and branding tips were gold."</p>
+                    <strong>Marco L. - Cologne, Germany</strong>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"The modules saved me months of research. The step-by-step instructions made everything so easy to follow."</p>
+                    <strong>Jasmine K. - Los Angeles, USA</strong>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"With all the talk about AI taking over, I felt insecure in my corporate job. LeLaude gave me the tools to finally build something of my own."</p>
+                    <strong>Daniel H. - London, UK</strong>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"I was scared of becoming irrelevant in my job. This blueprint showed me I can use my creativity and actually turn it into a business."</p>
+                    <strong>Maya L. - New York, USA</strong>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"I felt stuck in my 9-to-5 and afraid of being replaced. LeLaude helped me start something real now I have customers, freedom, and purpose."</p>
+                    <strong>Elisa C. - Houston, USA</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="offer" style="padding: 60px 0;">
+        <div class="container">
+            <div class="offer-content">
+                <h2 style="font-size: 2.5em;">LIMITED TIME OFFER</h2>
+                <h3 style="font-size: 2em; margin: 20px 0;">PROVEN. AFFORDABLE.</h3>
+                <p style="font-size: 1.3em;">Proven Blueprint That Saves Time & Money</p>
+                <p>We provide a 64-step, field-tested blueprint that helps entrepreneurs launch their fashion or beauty brand without wasting time or budget on avoidable mistakes.</p>
+                
+                <div class="countdown">
+                    <h3>Offer Expires in 24 Hours</h3>
+                    <div class="countdown-timer">
+                        <div class="time-unit">
+                            <span class="time-number" id="hours2">18</span>
+                            <span>hours</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-number" id="minutes2">7</span>
+                            <span>minutes</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-number" id="seconds2">0</span>
+                            <span>seconds</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="https://lelaude.com/checkout" class="hero-cta" style="font-size: 1.4em; padding: 20px 50px;">
+                    💌 Get Instant Access for $99
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Click to see the answers.</p>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    💡 What exactly will I get after I purchase?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    You'll get instant access to the complete Partner with AI Blueprint — including 6 deep-dive modules, 61 actionable checklists, and our proven Brand Launch system. You'll also receive exclusive lifetime access to any future updates!
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    ⚙️ Do I need tech skills to start?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Not at all! The program is designed for beginners. We walk you through every step, even if you've never used AI tools or launched a business before.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    ⏳ How much time will I need to complete this?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    If you can dedicate just 2–4 hours per week, you can finish the blueprint within 30–45 days. But you get lifetime access.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    🤖 Will this really help me protect my job from AI?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes — this program flips the script. Instead of competing against AI, you'll learn how to leverage AI to create a digital income stream and future-proof your career.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Lelaude LLC</p>
+            <p>info@lelaude.com</p>
+            <p>Office: 1200 Brickel Ave. Miami, FL USA</p>
+        </div>
+    </footer>
+
+    <!-- Sticky CTA -->
+    <a href="https://lelaude.com/checkout" class="sticky-cta">Get Access $99</a>
+
+    <script>
+        // Rotating Keywords for Floating Popup
+        const keywords = [
+            "🚀 Start Your Brand Today!",
+            "💰 Make Money Online!",
+            "🎯 Beat AI Competition!",
+            "⚡ 90-Day Success Plan!",
+            "🔥 Limited Time Offer!",
+            "💎 Transform Your Life!"
+        ];
+        
+        let currentKeywordIndex = 0;
+        
+        function rotateKeywords() {
+            const keywordElement = document.getElementById('rotatingKeyword');
+            if (keywordElement) {
+                keywordElement.style.opacity = '0';
+                setTimeout(() => {
+                    currentKeywordIndex = (currentKeywordIndex + 1) % keywords.length;
+                    keywordElement.textContent = keywords[currentKeywordIndex];
+                    keywordElement.style.opacity = '1';
+                }, 300);
+            }
+        }
+        
+        // Rotate keywords every 3 seconds
+        setInterval(rotateKeywords, 3000);
+
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(0, 0, 0, 0);
+            const distance = tomorrow.getTime() - now;
+
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+            
+            // Update second countdown timer
+            if (document.getElementById("hours2")) {
+                document.getElementById("hours2").innerHTML = hours.toString().padStart(2, '0');
+                document.getElementById("minutes2").innerHTML = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds2").innerHTML = seconds.toString().padStart(2, '0');
+            }
+
+            if (distance < 0) {
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                document.getElementById("seconds").innerHTML = "00";
+                if (document.getElementById("hours2")) {
+                    document.getElementById("hours2").innerHTML = "00";
+                    document.getElementById("minutes2").innerHTML = "00";
+                    document.getElementById("seconds2").innerHTML = "00";
+                }
+            }
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Initial call
+
+        // FAQ Toggle
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('span');
+            
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                icon.textContent = '+';
+            } else {
+                // Close all other FAQs
+                document.querySelectorAll('.faq-answer').forEach(faq => {
+                    faq.classList.remove('active');
+                });
+                document.querySelectorAll('.faq-question span').forEach(span => {
+                    span.textContent = '+';
+                });
+                
+                // Open clicked FAQ
+                answer.classList.add('active');
+                icon.textContent = '−';
+            }
+        }
+
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add scroll animations with stagger effect
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0) scale(1)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.testimonial, .feature, .module').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px) scale(0.9)';
+            el.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            observer.observe(el);
+        });
+
+        // Enhanced CTA tracking with visual feedback
+        document.querySelectorAll('a[href*="checkout"]').forEach(cta => {
+            cta.addEventListener('click', function(e) {
+                // Visual feedback
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+                console.log('CTA clicked:', this.textContent.trim());
+            });
+        });
+
+        // Improved exit intent with better popup design
+        let exitIntentShown = false;
+        document.addEventListener('mouseleave', function(e) {
+            if (e.clientY <= 0 && !exitIntentShown && window.scrollY > 500) {
+                exitIntentShown = true;
+                
+                // Create custom modal instead of browser confirm
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.8);
+                    z-index: 10000;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                `;
+                
+                modal.innerHTML = `
+                    <div style="
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        padding: 40px;
+                        border-radius: 20px;
+                        color: white;
+                        text-align: center;
+                        max-width: 500px;
+                        box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+                    ">
+                        <h2 style="margin-bottom: 20px; font-size: 2em;">⚡ Wait! Special Offer</h2>
+                        <p style="margin-bottom: 30px; font-size: 1.2em;">Don't miss out on this limited-time offer!<br>Get instant access for just <strong>$99</strong> (was $399)</p>
+                        <a href="https://lelaude.com/checkout" style="
+                            background: #00d4aa;
+                            color: white;
+                            padding: 15px 30px;
+                            border-radius: 50px;
+                            text-decoration: none;
+                            font-weight: bold;
+                            margin-right: 10px;
+                            display: inline-block;
+                        ">Yes, Get Access Now!</a>
+                        <button onclick="this.parentElement.parentElement.remove()" style="
+                            background: transparent;
+                            color: white;
+                            border: 2px solid white;
+                            padding: 15px 30px;
+                            border-radius: 50px;
+                            cursor: pointer;
+                            font-weight: bold;
+                        ">No Thanks</button>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                
+                // Remove modal when clicking outside
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+            }
+        });
+
+        // Mobile touch events for better UX
+        if ('ontouchstart' in window) {
+            document.querySelectorAll('.hero-cta, .feature, .testimonial').forEach(el => {
+                el.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                el.addEventListener('touchend', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        }
+    </script>
+</body>
+</html>
