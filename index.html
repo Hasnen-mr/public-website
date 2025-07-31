@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Launch Your AI-Powered Brand in 90 Days | LeLaude</title>
     <meta name="description" content="Learn how to start your own AI-powered business with our proven blueprint. Transform your career fear into entrepreneurial success.">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-primary: #000321;
-            --color-secondary: #F6F6FF;
-            --color-accent: #f8f8f8;
-            --color-gradient-1: #000321;
-            --color-gradient-2: #1a1a4a;
-            --color-success: #00d4aa;
+            --color-primary: #1a1a2e;
+            --color-secondary: #f8f9ff;
+            --color-accent: #eef1ff;
+            --color-gradient-1: #1a1a2e;
+            --color-gradient-2: #16213e;
+            --color-success: #00c896;
             --color-warning: #ff6b6b;
-            --text-light: #F6F6FF;
-            --text-dark: #000321;
-            --shadow-light: rgba(246, 246, 255, 0.1);
-            --shadow-dark: rgba(0, 3, 33, 0.3);
+            --color-gold: #f39c12;
+            --text-light: #ffffff;
+            --text-dark: #1a1a2e;
+            --text-gray: #64748b;
+            --shadow-light: rgba(255, 255, 255, 0.1);
+            --shadow-dark: rgba(26, 26, 46, 0.15);
+            --shadow-strong: rgba(26, 26, 46, 0.25);
         }
 
         * {
@@ -40,147 +44,300 @@
             padding: 0 20px;
         }
 
-        /* Floating Popup - Moved to Right */
-        .floating-popup {
-            position: fixed;
-            right: -280px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(145deg, var(--color-primary), var(--color-gradient-2));
+        /* Logo */
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            font-weight: 900;
             color: var(--text-light);
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px var(--shadow-dark);
-            z-index: 1001;
-            width: 280px;
-            animation: slideInOutRight 15s infinite;
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--shadow-light);
-            display: none;
+            text-decoration: none;
+            background: linear-gradient(45deg, var(--color-gold), #e67e22);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: inline-block;
         }
 
-        @keyframes slideInOutRight {
-            0% { right: -280px; }
-            10% { right: 20px; }
-            90% { right: 20px; }
-            100% { right: -280px; }
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(45deg, var(--color-gold), #e67e22);
+            border-radius: 2px;
         }
 
-        .floating-popup.show {
-            display: block;
-        }
-
-        .popup-keyword {
-            font-size: 1.2em;
+        /* Floating Buttons */
+        .floating-access-btn {
+            position: fixed;
+            left: 25px;
+            bottom: 25px;
+            background: linear-gradient(45deg, var(--color-success), #00a085);
+            color: var(--text-light);
+            padding: 18px 25px;
+            border-radius: 50px;
+            text-decoration: none;
             font-weight: 700;
-            margin-bottom: 15px;
-            height: 30px;
+            font-size: 1.1em;
+            box-shadow: 0 15px 35px rgba(0, 200, 150, 0.4);
+            z-index: 1000;
+            animation: floatPulse 3s infinite;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .floating-access-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 45px rgba(0, 200, 150, 0.6);
+        }
+
+        .floating-ai-btn {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: linear-gradient(45deg, var(--color-primary), var(--color-gradient-2));
+            color: var(--text-light);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            color: var(--color-success);
-        }
-
-        .popup-cta {
-            background: var(--color-success);
-            color: var(--text-light);
-            padding: 12px 24px;
-            border: none;
-            border-radius: 30px;
-            font-weight: 600;
+            justify-content: center;
+            font-size: 1.8em;
+            box-shadow: 0 15px 35px var(--shadow-strong);
+            z-index: 1000;
             cursor: pointer;
-            text-decoration: none;
-            display: block;
-            text-align: center;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
             transition: all 0.3s ease;
-            margin-top: 15px;
-            font-size: 0.95em;
+            animation: aiPulse 4s infinite;
         }
 
-        .popup-cta:hover {
-            background: #00b894;
-            transform: scale(1.05);
+        .floating-ai-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 20px 45px var(--shadow-strong);
         }
 
-        /* AI Agent Popup */
-        .ai-agent-popup {
+        @keyframes floatPulse {
+            0% { transform: translateY(0) scale(1); box-shadow: 0 15px 35px rgba(0, 200, 150, 0.4); }
+            50% { transform: translateY(-5px) scale(1.02); box-shadow: 0 20px 45px rgba(0, 200, 150, 0.6); }
+            100% { transform: translateY(0) scale(1); box-shadow: 0 15px 35px rgba(0, 200, 150, 0.4); }
+        }
+
+        @keyframes aiPulse {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.05); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* AI Chat Box */
+        .ai-chat-box {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
+            right: 25px;
+            bottom: 100px;
+            width: 350px;
+            height: 450px;
             background: linear-gradient(145deg, var(--color-primary), var(--color-gradient-2));
-            color: var(--text-light);
-            padding: 25px;
             border-radius: 20px;
-            box-shadow: 0 25px 50px var(--shadow-dark);
-            z-index: 1002;
-            width: 320px;
+            box-shadow: 0 25px 50px var(--shadow-strong);
+            z-index: 1001;
             backdrop-filter: blur(15px);
-            border: 1px solid var(--shadow-light);
+            border: 2px solid var(--shadow-light);
             display: none;
-            animation: aiPopupSlide 0.5s ease-out;
+            flex-direction: column;
+            overflow: hidden;
+            animation: chatSlideIn 0.4s ease-out;
         }
 
-        @keyframes aiPopupSlide {
+        @keyframes chatSlideIn {
             from {
-                transform: translateX(-100%);
+                transform: translateY(100%);
                 opacity: 0;
             }
             to {
-                transform: translateX(0);
+                transform: translateY(0);
                 opacity: 1;
             }
         }
 
-        .ai-agent-popup.show {
-            display: block;
+        .ai-chat-box.show {
+            display: flex;
         }
 
-        .ai-agent-header {
+        .chat-header {
+            background: linear-gradient(45deg, var(--color-success), #00a085);
+            padding: 20px;
+            color: var(--text-light);
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            justify-content: space-between;
         }
 
-        .ai-avatar {
-            width: 40px;
-            height: 40px;
-            background: var(--color-success);
+        .chat-header-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-avatar {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 12px;
-            font-size: 1.2em;
+            font-size: 1.5em;
         }
 
-        .ai-name {
-            font-weight: 700;
-            color: var(--color-success);
-        }
-
-        .ai-status {
-            font-size: 0.8em;
-            opacity: 0.8;
-        }
-
-        .ai-message {
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .ai-close {
-            position: absolute;
-            top: 10px;
-            right: 15px;
+        .chat-close {
             background: none;
             border: none;
             color: var(--text-light);
-            font-size: 1.2em;
+            font-size: 1.5em;
             cursor: pointer;
-            opacity: 0.7;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
         }
 
-        .ai-close:hover {
-            opacity: 1;
+        .chat-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: var(--text-light);
+        }
+
+        .chat-message {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 15px;
+            max-width: 80%;
+            animation: messageSlide 0.3s ease-out;
+        }
+
+        @keyframes messageSlide {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .chat-message.ai {
+            background: var(--color-accent);
+            color: var(--text-dark);
+            border-bottom-left-radius: 5px;
+        }
+
+        .chat-message.user {
+            background: var(--color-success);
+            color: var(--text-light);
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chat-input-area {
+            padding: 20px;
+            background: var(--color-accent);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid var(--shadow-light);
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input:focus {
+            border-color: var(--color-success);
+        }
+
+        .chat-send {
+            background: var(--color-success);
+            color: var(--text-light);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .chat-send:hover {
+            background: #00a085;
+            transform: scale(1.05);
+        }
+
+        /* Auto Popup */
+        .auto-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(145deg, var(--color-primary), var(--color-gradient-2));
+            color: var(--text-light);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 30px 60px var(--shadow-strong);
+            z-index: 1002;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--shadow-light);
+            display: none;
+            animation: popupZoom 0.4s ease-out;
+        }
+
+        @keyframes popupZoom {
+            from {
+                transform: translate(-50%, -50%) scale(0.7);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .auto-popup.show {
+            display: block;
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 46, 0.8);
+            z-index: 1001;
+            display: none;
+            backdrop-filter: blur(5px);
+        }
+
+        .popup-overlay.show {
+            display: block;
         }
 
         /* Header */
@@ -200,7 +357,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 30% 70%, rgba(246, 246, 255, 0.1) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
             animation: float 8s ease-in-out infinite;
         }
 
@@ -214,8 +371,33 @@
             z-index: 2;
         }
 
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+            color: var(--color-gold);
+        }
+
         .trust-badge {
-            background: rgba(246, 246, 255, 0.15);
+            background: rgba(255, 255, 255, 0.15);
             padding: 18px 35px;
             border-radius: 50px;
             display: inline-block;
@@ -226,15 +408,15 @@
         }
 
         @keyframes glow {
-            from { box-shadow: 0 0 25px rgba(246, 246, 255, 0.2); }
-            to { box-shadow: 0 0 40px rgba(246, 246, 255, 0.4); }
+            from { box-shadow: 0 0 25px rgba(255, 255, 255, 0.2); }
+            to { box-shadow: 0 0 40px rgba(255, 255, 255, 0.4); }
         }
 
         .headline {
             font-size: 4.2em;
             font-weight: 900;
             margin-bottom: 30px;
-            text-shadow: 2px 2px 8px rgba(0, 3, 33, 0.5);
+            text-shadow: 2px 2px 8px rgba(26, 26, 46, 0.5);
             background: linear-gradient(45deg, var(--text-light), var(--color-accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -253,7 +435,7 @@
         }
 
         .hero-cta {
-            background: linear-gradient(45deg, var(--color-success), #00b894);
+            background: linear-gradient(45deg, var(--color-success), #00a085);
             color: var(--text-light);
             padding: 25px 60px;
             border: none;
@@ -264,7 +446,7 @@
             transition: all 0.4s ease;
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 20px 40px rgba(0, 212, 170, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 200, 150, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -286,7 +468,7 @@
 
         .hero-cta:hover {
             transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 30px 60px rgba(0, 212, 170, 0.5);
+            box-shadow: 0 30px 60px rgba(0, 200, 150, 0.5);
         }
 
         /* Social Proof */
@@ -307,12 +489,12 @@
         }
 
         .testimonial {
-            background: linear-gradient(145deg, #ffffff, var(--color-accent));
+            background: var(--text-light);
             padding: 40px;
             border-radius: 25px;
             border-left: 6px solid var(--color-primary);
             transition: all 0.4s ease;
-            box-shadow: 0 15px 35px rgba(0, 3, 33, 0.08);
+            box-shadow: 0 15px 35px var(--shadow-dark);
             position: relative;
             overflow: hidden;
         }
@@ -323,21 +505,21 @@
             top: -15px;
             left: 25px;
             font-size: 7em;
-            color: rgba(0, 3, 33, 0.05);
+            color: rgba(26, 26, 46, 0.05);
             font-family: serif;
         }
 
         .testimonial:hover {
             transform: translateY(-12px);
-            box-shadow: 0 25px 50px rgba(0, 3, 33, 0.15);
+            box-shadow: 0 25px 50px var(--shadow-strong);
             border-left-color: var(--color-success);
         }
 
         .stars {
-            color: #ffd700;
+            color: var(--color-gold);
             font-size: 1.4em;
             margin-bottom: 25px;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            text-shadow: 0 0 15px rgba(243, 156, 18, 0.3);
         }
 
         /* Offer Section */
@@ -357,7 +539,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(246, 246, 255, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
             animation: rotate 25s linear infinite;
         }
 
@@ -367,14 +549,14 @@
         }
 
         .offer-content {
-            background: rgba(246, 246, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1);
             padding: 70px;
             border-radius: 30px;
             backdrop-filter: blur(20px);
             border: 1px solid var(--shadow-light);
             position: relative;
             z-index: 2;
-            box-shadow: 0 30px 60px rgba(0, 3, 33, 0.3);
+            box-shadow: 0 30px 60px rgba(26, 26, 46, 0.3);
         }
 
         .price-container {
@@ -392,22 +574,22 @@
             font-size: 5em;
             font-weight: 900;
             color: var(--color-success);
-            text-shadow: 0 0 30px rgba(0, 212, 170, 0.5);
+            text-shadow: 0 0 30px rgba(0, 200, 150, 0.5);
             animation: priceGlow 2.5s ease-in-out infinite alternate;
         }
 
         @keyframes priceGlow {
-            from { text-shadow: 0 0 30px rgba(0, 212, 170, 0.5); }
-            to { text-shadow: 0 0 50px rgba(0, 212, 170, 0.8); }
+            from { text-shadow: 0 0 30px rgba(0, 200, 150, 0.5); }
+            to { text-shadow: 0 0 50px rgba(0, 200, 150, 0.8); }
         }
 
         .countdown {
-            background: rgba(0, 3, 33, 0.5);
+            background: rgba(26, 26, 46, 0.5);
             padding: 45px;
             border-radius: 25px;
             margin: 60px 0;
             border: 2px solid var(--shadow-light);
-            box-shadow: 0 20px 40px rgba(0, 3, 33, 0.4);
+            box-shadow: 0 20px 40px rgba(26, 26, 46, 0.4);
         }
 
         .countdown-timer {
@@ -419,7 +601,7 @@
         }
 
         .time-unit {
-            background: rgba(246, 246, 255, 0.15);
+            background: rgba(255, 255, 255, 0.15);
             padding: 25px;
             border-radius: 20px;
             min-width: 100px;
@@ -437,13 +619,13 @@
             font-weight: 900;
             display: block;
             color: var(--color-success);
-            text-shadow: 0 0 15px rgba(0, 212, 170, 0.5);
+            text-shadow: 0 0 15px rgba(0, 200, 150, 0.5);
         }
 
         /* Features */
         .features {
             padding: 120px 0;
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-gradient-2) 100%);
+            background: var(--color-secondary);
             position: relative;
             overflow: hidden;
         }
@@ -455,7 +637,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="1" fill="rgba(246,246,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(246,246,255,0.1)"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="1" fill="rgba(26,26,46,0.05)"/><circle cx="75" cy="75" r="1" fill="rgba(26,26,46,0.05)"/></svg>');
             background-size: 250px 250px;
             animation: backgroundMove 15s linear infinite;
         }
@@ -479,29 +661,29 @@
             padding: 45px;
             border-radius: 25px;
             transition: all 0.4s ease;
-            background: rgba(246, 246, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border: 2px solid var(--shadow-light);
-            color: var(--text-light);
-            box-shadow: 0 20px 40px rgba(0, 3, 33, 0.2);
+            background: var(--text-light);
+            border: 2px solid var(--color-accent);
+            color: var(--text-dark);
+            box-shadow: 0 20px 40px var(--shadow-dark);
         }
 
         .feature:hover {
-            background: rgba(246, 246, 255, 0.2);
+            background: linear-gradient(145deg, var(--text-light), var(--color-accent));
             transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0, 3, 33, 0.3);
+            box-shadow: 0 30px 60px var(--shadow-strong);
+            border-color: var(--color-success);
         }
 
         .feature-icon {
             font-size: 4em;
             margin-bottom: 30px;
-            filter: drop-shadow(0 0 25px rgba(246, 246, 255, 0.3));
+            filter: drop-shadow(0 0 25px rgba(26, 26, 46, 0.2));
         }
 
         /* About */
         .about {
             padding: 100px 0;
-            background: var(--color-secondary);
+            background: var(--text-light);
         }
 
         .about-content {
@@ -532,7 +714,7 @@
             font-size: 4em;
             font-weight: 900;
             margin: 0 auto;
-            box-shadow: 0 25px 50px rgba(0, 3, 33, 0.3);
+            box-shadow: 0 25px 50px var(--shadow-strong);
         }
 
         /* Testimonials */
@@ -555,11 +737,11 @@
         }
 
         .faq-item {
-            background: #ffffff;
+            background: var(--text-light);
             margin-bottom: 20px;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 3, 33, 0.08);
+            box-shadow: 0 8px 25px var(--shadow-dark);
         }
 
         .faq-question {
@@ -582,6 +764,7 @@
             padding: 25px;
             display: none;
             line-height: 1.6;
+            color: var(--text-dark);
         }
 
         .faq-answer.active {
@@ -594,30 +777,6 @@
             color: var(--text-light);
             padding: 60px 0;
             text-align: center;
-        }
-
-        /* Sticky CTA */
-        .sticky-cta {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: linear-gradient(45deg, var(--color-success), #00b894);
-            color: var(--text-light);
-            padding: 20px 35px;
-            border-radius: 60px;
-            text-decoration: none;
-            font-weight: 700;
-            box-shadow: 0 15px 35px rgba(0, 212, 170, 0.4);
-            z-index: 999;
-            animation: stickyPulse 4s infinite;
-            border: 2px solid rgba(246, 246, 255, 0.2);
-            backdrop-filter: blur(15px);
-        }
-
-        @keyframes stickyPulse {
-            0% { transform: scale(1); box-shadow: 0 15px 35px rgba(0, 212, 170, 0.4); }
-            50% { transform: scale(1.1); box-shadow: 0 20px 45px rgba(0, 212, 170, 0.6); }
-            100% { transform: scale(1); box-shadow: 0 15px 35px rgba(0, 212, 170, 0.4); }
         }
 
         /* Responsive */
@@ -642,20 +801,66 @@
                 grid-template-columns: 1fr;
             }
 
-            .floating-popup,
-            .ai-agent-popup {
-                width: 260px;
+            .ai-chat-box {
+                width: 90%;
+                right: 5%;
+                height: 70vh;
             }
 
-            .floating-popup {
-                right: -260px;
+            .auto-popup {
+                width: 95%;
+                padding: 25px;
             }
 
-            .ai-agent-popup {
-                width: 280px;
-                left: 10px;
-                right: 10px;
-                bottom: 10px;
+            .floating-access-btn {
+                padding: 15px 20px;
+                font-size: 1em;
+            }
+
+            .header-top {
+                flex-direction: column;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .header-nav {
+                justify-content: center;
+            }
+
+            .logo {
+                font-size: 2em;
+            }
+
+            .offer-content {
+                padding: 40px 25px;
+            }
+
+            .features {
+                padding: 80px 0;
+            }
+
+            .features-grid .feature {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ai-chat-box {
+                width: 95%;
+                right: 2.5%;
+                bottom: 90px;
+                height: 65vh;
+            }
+
+            .floating-ai-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 1.6em;
+            }
+
+            .floating-access-btn {
+                padding: 12px 18px;
+                font-size: 0.9em;
             }
         }
 
@@ -664,10 +869,13 @@
             font-weight: 900;
             text-align: center;
             margin-bottom: 30px;
-            background: linear-gradient(45deg, var(--color-primary), var(--color-gradient-2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text-dark);
+            text-shadow: 1px 1px 3px rgba(26, 26, 46, 0.1);
+        }
+
+        .section-title.light {
+            color: var(--text-light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .section-subtitle {
@@ -676,10 +884,16 @@
             margin-bottom: 60px;
             opacity: 0.85;
             font-weight: 400;
+            color: var(--text-gray);
+        }
+
+        .section-subtitle.light {
+            color: var(--text-light);
+            opacity: 0.9;
         }
 
         .urgency-text {
-            background: rgba(246, 246, 255, 0.15);
+            background: rgba(255, 255, 255, 0.15);
             padding: 20px;
             border-radius: 15px;
             margin: 25px 0;
@@ -698,7 +912,7 @@
 
         .benefit-list li {
             padding: 15px 0;
-            border-bottom: 1px solid rgba(246, 246, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             font-size: 1.1em;
         }
 
@@ -719,36 +933,122 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Typing indicator */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 12px 16px;
+            background: var(--color-accent);
+            border-radius: 15px;
+            border-bottom-left-radius: 5px;
+            margin-bottom: 15px;
+            max-width: 80%;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--text-gray);
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typingBounce {
+            0%, 80%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Floating Popup - Right Side -->
-    <div class="floating-popup" id="floatingPopup">
-        <div class="popup-keyword" id="rotatingKeyword">🚀 Start Your Brand Today!</div>
-        <p style="font-size: 0.9em; margin-bottom: 15px;">Limited time offer - Don't miss out!</p>
-        <a href="https://lelaude.com/checkout" class="popup-cta">Get Access Now</a>
+    <!-- Floating Access Button (Left) -->
+    <a href="https://lelaude.com/checkout" class="floating-access-btn">
+        💳 Get Access $99
+    </a>
+
+    <!-- Floating AI Button (Right) -->
+    <div class="floating-ai-btn" onclick="toggleChat()">
+        🤖
     </div>
 
-    <!-- AI Agent Popup -->
-    <div class="ai-agent-popup" id="aiAgentPopup">
-        <button class="ai-close" onclick="closeAiPopup()">×</button>
-        <div class="ai-agent-header">
-            <div class="ai-avatar">🤖</div>
-            <div>
-                <div class="ai-name">AI Assistant</div>
-                <div class="ai-status">Online now</div>
+    <!-- AI Chat Box -->
+    <div class="ai-chat-box" id="aiChatBox">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <div class="chat-avatar">🤖</div>
+                <div>
+                    <div style="font-weight: 700;">AI Assistant</div>
+                    <div style="font-size: 0.9em; opacity: 0.9;">Online now</div>
+                </div>
+            </div>
+            <button class="chat-close" onclick="closeChat()">×</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message ai">
+                Hi! 👋 I'm here to help you launch your AI-powered brand. How can I assist you today?
             </div>
         </div>
-        <div class="ai-message" id="aiMessage">
-            Hi! I'm here to help you launch your AI-powered brand. Do you have any questions about our blueprint?
+        <div class="chat-input-area">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
+            <button class="chat-send" onclick="sendMessage()">Send</button>
         </div>
-        <a href="https://lelaude.com/checkout" class="popup-cta">Start My Brand Journey</a>
+    </div>
+
+    <!-- Auto Popup Overlay -->
+    <div class="popup-overlay" id="popupOverlay" onclick="closeAutoPopup()"></div>
+
+    <!-- Auto Popup -->
+    <div class="auto-popup" id="autoPopup">
+        <h2 style="font-size: 2.2em; margin-bottom: 20px; color: var(--color-success);">🚀 Special Limited Offer!</h2>
+        <p style="font-size: 1.3em; margin-bottom: 25px; line-height: 1.5;">Don't let AI replace you - learn to work WITH it!<br>Get our complete blueprint for just <strong style="color: var(--color-gold);">$99</strong> (was $399)</p>
+        <a href="https://lelaude.com/checkout" style="
+            background: var(--color-success);
+            color: white;
+            padding: 18px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 15px;
+            display: inline-block;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Yes, Get Access Now!</a>
+        <button onclick="closeAutoPopup()" style="
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            padding: 18px 35px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        " onmouseover="this.style.borderColor='white'" onmouseout="this.style.borderColor='rgba(255, 255, 255, 0.5)'">Maybe Later</button>
     </div>
 
     <!-- Header Section -->
     <section class="header">
         <div class="container">
             <div class="header-content">
+                <div class="header-top">
+                    <a href="#" class="logo">LeLaude</a>
+                    <nav class="header-nav">
+                        <a href="#about" class="nav-link">About</a>
+                        <a href="#features" class="nav-link">Features</a>
+                        <a href="#testimonials" class="nav-link">Reviews</a>
+                    </nav>
+                </div>
                 <div class="trust-badge">
                     <span class="stars">⭐⭐⭐⭐⭐</span>
                     Trusted by Hundreds of Entrepreneurs
@@ -836,9 +1136,9 @@
     </section>
 
     <!-- Features Section -->
-    <section class="features">
+    <section class="features" id="features">
         <div class="container">
-            <h2 class="section-title" style="color: var(--text-light);">This Blueprint + 6 Modules + 61 Check-list Will Change Your Life</h2>
+            <h2 class="section-title">This Blueprint + 6 Modules + 61 Check-list Will Change Your Life</h2>
             
             <div class="features-grid">
                 <div class="feature fade-in">
@@ -876,7 +1176,7 @@
     </section>
 
     <!-- About Section -->
-    <section class="about">
+    <section class="about" id="about">
         <div class="container">
             <div class="about-content">
                 <div class="about-text">
@@ -900,7 +1200,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="testimonials">
+    <section class="testimonials" id="testimonials">
         <div class="container">
             <h2 class="section-title">Real People. Real Success.</h2>
             <p class="section-subtitle">HEAR FROM MY STUDENTS<br><span class="stars">⭐⭐⭐⭐⭐</span> +300 REVIEWS</p>
@@ -1027,159 +1327,149 @@
         </div>
     </footer>
 
-    <!-- Sticky CTA -->
-    <a href="https://lelaude.com/checkout" class="sticky-cta">Get Access $99</a>
-
     <script>
-        // Enhanced popup management system
-        let activePopup = null;
-        let popupTimers = {
-            floating: null,
-            ai: null
-        };
-
-        // AI Agent Messages
-        const aiMessages = [
-            "Hi! I'm here to help you launch your AI-powered brand. Do you have any questions about our blueprint?",
-            "🚀 Ready to future-proof your career? Our blueprint has helped hundreds of entrepreneurs succeed!",
-            "💡 Did you know 75% of our students launch their first product within 90 days? Want to join them?",
-            "⚡ This offer expires soon! Don't let AI replace you - learn to work WITH it instead.",
-            "🎯 Still thinking? Our step-by-step blueprint makes it easy even for complete beginners.",
-            "💰 Worried about investment? At just $99, this blueprint pays for itself with your first sale!"
+        // AI Chat System
+        let conversationStep = 0;
+        let userHasMessaged = false;
+        const aiResponses = [
+            "🚀 That's great! Our blueprint has helped over 500+ entrepreneurs launch successful brands. Are you ready to start your own AI-powered business?",
+            "💡 Perfect! With our proven system, 75% of students launch their first product within 90 days. The best part? You don't need any technical experience!",
+            "🎯 Awesome! Here's a special offer just for you - Get instant access to our complete blueprint for only $99 (normally $399). This offer expires soon!"
         ];
 
-        let currentAiMessageIndex = 0;
+        function toggleChat() {
+            const chatBox = document.getElementById('aiChatBox');
+            chatBox.classList.toggle('show');
+        }
 
-        // Rotating Keywords for Floating Popup
-        const keywords = [
-            "🚀 Start Your Brand Today!",
-            "💰 Make Money Online!",
-            "🎯 Beat AI Competition!",
-            "⚡ 90-Day Success Plan!",
-            "🔥 Limited Time Offer!",
-            "💎 Transform Your Life!"
-        ];
-        
-        let currentKeywordIndex = 0;
+        function closeChat() {
+            const chatBox = document.getElementById('aiChatBox');
+            chatBox.classList.remove('show');
+        }
 
-        function hideAllPopups() {
-            const floatingPopup = document.getElementById('floatingPopup');
-            const aiPopup = document.getElementById('aiAgentPopup');
-            
-            if (floatingPopup) {
-                floatingPopup.classList.remove('show');
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
             }
-            if (aiPopup) {
-                aiPopup.classList.remove('show');
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const messagesContainer = document.getElementById('chatMessages');
+            const message = input.value.trim();
+
+            if (message === '') return;
+
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'chat-message user';
+            userMessage.textContent = message;
+            messagesContainer.appendChild(userMessage);
+
+            // Clear input
+            input.value = '';
+
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Set flag that user has messaged
+            if (!userHasMessaged) {
+                userHasMessaged = true;
+                startAutomatedResponses();
             }
+        }
+
+        function addTypingIndicator() {
+            const messagesContainer = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing-indicator';
+            typingDiv.id = 'typingIndicator';
+            typingDiv.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            messagesContainer.appendChild(typingDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function removeTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function addAiMessage(message, isLastMessage = false) {
+            const messagesContainer = document.getElementById('chatMessages');
             
-            activePopup = null;
-            
-            // Clear any existing timers
-            Object.values(popupTimers).forEach(timer => {
-                if (timer) clearTimeout(timer);
+            // Remove typing indicator
+            removeTypingIndicator();
+
+            // Add AI message
+            const aiMessage = document.createElement('div');
+            aiMessage.className = 'chat-message ai';
+            aiMessage.textContent = message;
+            messagesContainer.appendChild(aiMessage);
+
+            // Add special offer link if it's the last message
+            if (isLastMessage) {
+                setTimeout(() => {
+                    const offerMessage = document.createElement('div');
+                    offerMessage.className = 'chat-message ai';
+                    offerMessage.innerHTML = `
+                        <strong>🎁 Special Offer Link:</strong><br>
+                        <a href="https://lelaude.com/checkout" style="
+                            background: var(--color-success);
+                            color: white;
+                            padding: 10px 20px;
+                            border-radius: 25px;
+                            text-decoration: none;
+                            font-weight: 600;
+                            display: inline-block;
+                            margin-top: 10px;
+                            transition: all 0.3s ease;
+                        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                            🚀 Get Access Now - $99 Only!
+                        </a>
+                    `;
+                    messagesContainer.appendChild(offerMessage);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 1000);
+            }
+
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function startAutomatedResponses() {
+            const delays = [2000, 4000, 6000]; // 2s, 4s, 6s delays
+
+            aiResponses.forEach((response, index) => {
+                setTimeout(() => {
+                    addTypingIndicator();
+                    
+                    setTimeout(() => {
+                        const isLastMessage = index === aiResponses.length - 1;
+                        addAiMessage(response, isLastMessage);
+                    }, 1500); // Typing delay
+                }, delays[index]);
             });
         }
 
-        function showFloatingPopup() {
-            if (activePopup) return; // Don't show if another popup is active
-            
-            const popup = document.getElementById('floatingPopup');
-            if (popup) {
-                popup.classList.add('show');
-                activePopup = 'floating';
-                
-                // Hide after 15 seconds
-                popupTimers.floating = setTimeout(() => {
-                    popup.classList.remove('show');
-                    if (activePopup === 'floating') {
-                        activePopup = null;
-                    }
-                }, 15000);
-            }
+        // Auto Popup System
+        function showAutoPopup() {
+            const popup = document.getElementById('autoPopup');
+            const overlay = document.getElementById('popupOverlay');
+            popup.classList.add('show');
+            overlay.classList.add('show');
         }
 
-        function showAiAgentPopup() {
-            if (activePopup) return; // Don't show if another popup is active
-            
-            const popup = document.getElementById('aiAgentPopup');
-            const messageElement = document.getElementById('aiMessage');
-            
-            if (popup && messageElement) {
-                // Update message
-                messageElement.textContent = aiMessages[currentAiMessageIndex];
-                currentAiMessageIndex = (currentAiMessageIndex + 1) % aiMessages.length;
-                
-                popup.classList.add('show');
-                activePopup = 'ai';
-                
-                // Auto-hide after 20 seconds
-                popupTimers.ai = setTimeout(() => {
-                    popup.classList.remove('show');
-                    if (activePopup === 'ai') {
-                        activePopup = null;
-                    }
-                }, 20000);
-            }
+        function closeAutoPopup() {
+            const popup = document.getElementById('autoPopup');
+            const overlay = document.getElementById('popupOverlay');
+            popup.classList.remove('show');
+            overlay.classList.remove('show');
         }
 
-        function closeAiPopup() {
-            const popup = document.getElementById('aiAgentPopup');
-            if (popup) {
-                popup.classList.remove('show');
-                if (activePopup === 'ai') {
-                    activePopup = null;
-                }
-                if (popupTimers.ai) {
-                    clearTimeout(popupTimers.ai);
-                    popupTimers.ai = null;
-                }
-            }
-        }
-
-        function rotateKeywords() {
-            const keywordElement = document.getElementById('rotatingKeyword');
-            if (keywordElement) {
-                keywordElement.style.opacity = '0';
-                setTimeout(() => {
-                    currentKeywordIndex = (currentKeywordIndex + 1) % keywords.length;
-                    keywordElement.textContent = keywords[currentKeywordIndex];
-                    keywordElement.style.opacity = '1';
-                }, 300);
-            }
-        }
-
-        // Enhanced popup scheduling system
-        function schedulePopups() {
-            // Show floating popup every 60 seconds
-            setInterval(() => {
-                if (!activePopup) {
-                    showFloatingPopup();
-                }
-            }, 60000);
-
-            // Show AI agent popup every 45 seconds (offset from floating popup)
-            setTimeout(() => {
-                setInterval(() => {
-                    if (!activePopup) {
-                        showAiAgentPopup();
-                    }
-                }, 45000);
-            }, 22500); // Start after 22.5 seconds to offset from floating popup
-
-            // Initial AI popup after 15 seconds
-            setTimeout(() => {
-                if (!activePopup) {
-                    showAiAgentPopup();
-                }
-            }, 15000);
-        }
-
-        // Start popup scheduling
-        schedulePopups();
-
-        // Rotate keywords every 4 seconds
-        setInterval(rotateKeywords, 4000);
+        // Show auto popup after 40 seconds
+        setTimeout(showAutoPopup, 40000);
 
         // Countdown Timer
         function updateCountdown() {
@@ -1259,9 +1549,6 @@
         // Enhanced CTA tracking with visual feedback
         document.querySelectorAll('a[href*="checkout"]').forEach(cta => {
             cta.addEventListener('click', function(e) {
-                // Hide any active popups when CTA is clicked
-                hideAllPopups();
-                
                 // Visual feedback
                 this.style.transform = 'scale(0.95)';
                 setTimeout(() => {
@@ -1272,76 +1559,11 @@
             });
         });
 
-        // Enhanced exit intent
-        let exitIntentShown = false;
-        document.addEventListener('mouseleave', function(e) {
-            if (e.clientY <= 0 && !exitIntentShown && window.scrollY > 500) {
-                exitIntentShown = true;
-                hideAllPopups(); // Hide other popups first
-                
-                // Create enhanced exit intent modal
-                const modal = document.createElement('div');
-                modal.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0, 3, 33, 0.9);
-                    z-index: 10000;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    backdrop-filter: blur(10px);
-                `;
-                
-                modal.innerHTML = `
-                    <div style="
-                        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-gradient-2) 100%);
-                        padding: 50px;
-                        border-radius: 25px;
-                        color: white;
-                        text-align: center;
-                        max-width: 550px;
-                        box-shadow: 0 30px 60px rgba(0, 3, 33, 0.5);
-                        border: 2px solid rgba(246, 246, 255, 0.2);
-                    ">
-                        <h2 style="margin-bottom: 25px; font-size: 2.2em; color: var(--color-success);">⚡ Wait! Special Offer</h2>
-                        <p style="margin-bottom: 35px; font-size: 1.3em; line-height: 1.5;">Don't miss out on this limited-time offer!<br>Get instant access for just <strong style="color: var(--color-success);">$99</strong> <span style="text-decoration: line-through; opacity: 0.7;">(was $399)</span></p>
-                        <a href="https://lelaude.com/checkout" style="
-                            background: var(--color-success);
-                            color: white;
-                            padding: 18px 35px;
-                            border-radius: 50px;
-                            text-decoration: none;
-                            font-weight: bold;
-                            margin-right: 15px;
-                            display: inline-block;
-                            font-size: 1.1em;
-                            transition: all 0.3s ease;
-                        " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">Yes, Get Access Now!</a>
-                        <button onclick="this.parentElement.parentElement.remove()" style="
-                            background: transparent;
-                            color: white;
-                            border: 2px solid rgba(246, 246, 255, 0.5);
-                            padding: 18px 35px;
-                            border-radius: 50px;
-                            cursor: pointer;
-                            font-weight: bold;
-                            font-size: 1.1em;
-                            transition: all 0.3s ease;
-                        " onmouseover="this.style.borderColor='white'" onmouseout="this.style.borderColor='rgba(246, 246, 255, 0.5)'">No Thanks</button>
-                    </div>
-                `;
-                
-                document.body.appendChild(modal);
-                
-                // Remove modal when clicking outside
-                modal.addEventListener('click', function(e) {
-                    if (e.target === modal) {
-                        modal.remove();
-                    }
-                });
+        // Close popups on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeAutoPopup();
+                closeChat();
             }
         });
 
@@ -1357,24 +1579,24 @@
             });
         }
 
-        // Close popups when clicking on CTAs or outside
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('a[href*="checkout"]')) {
-                hideAllPopups();
-            }
-        });
-
-        // Keyboard accessibility for popups
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                hideAllPopups();
-            }
-        });
-
-        // Performance optimization - reduce animations on slower devices
+        // Performance optimization
         if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
             document.documentElement.style.setProperty('--animation-duration', '0.3s');
         }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
