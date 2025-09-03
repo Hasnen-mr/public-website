@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agency Facebook Ad Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1877f2;
+            text-align: center;
+        }
+        .section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #1877f2;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #166fe5;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .pages-list {
+            margin: 15px 0;
+        }
+        .page-item {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin: 5px 0;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .success {
+            color: green;
+            padding: 10px;
+            background-color: #d4edda;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .error {
+            color: red;
+            padding: 10px;
+            background-color: #f8d7da;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .loading {
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Agency Facebook Ad Management</h1>
+        <p style="text-align: center; color: #666;">
+            Connect client Facebook pages and run ads using your agency ad account
+        </p>
+        
+        <!-- Client Onboarding Section -->
+        <div class="section">
+            <h2>📝 Step 1: Client Onboarding</h2>
+            <p>Have your client connect their Facebook page to grant you advertising permissions.</p>
+            
+            <button id="connectBtn" onclick="startEmbeddedSignup()">
+                Connect Facebook Page
+            </button>
+            
+            <div id="signupResult"></div>
+            <div id="pagesList"></div>
+        </div>
+        
+        <!-- Campaign Creation Section -->
+        <div class="section">
+            <h2>📊 Step 2: Create Ad Campaign</h2>
+            <p>Create and manage ad campaigns for your client's pages using your agency ad account.</p>
+            
+            <form id="campaignForm">
+                <div class="form-group">
+                    <label for="pageSelect">Select Client Page:</label>
+                    <select id="pageSelect" required>
+                        <option value="">-- Select a page --</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="campaignName">Campaign Name:</label>
+                    <input type="text" id="campaignName" required placeholder="e.g., Holiday Sale Campaign">
+                </div>
+                
+                <div class="form-group">
+                    <label for="objective">Campaign Objective:</label>
+                    <select id="objective" required>
+                        <option value="LINK_CLICKS">Link Clicks</option>
+                        <option value="REACH">Reach</option>
+                        <option value="POST_ENGAGEMENT">Post Engagement</option>
+                        <option value="PAGE_LIKES">Page Likes</option>
+                        <option value="CONVERSIONS">Conversions</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dailyBudget">Daily Budget ($):</label>
+                    <input type="number" id="dailyBudget" min="5" value="50" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Ad Message:</label>
+                    <textarea id="message" rows="3" placeholder="Enter your ad message here..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="link">Landing Page URL:</label>
+                    <input type="url" id="link" placeholder="https://your-client-website.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="headline">Ad Headline:</label>
+                    <input type="text" id="headline" placeholder="Compelling headline for your ad">
+                </div>
+                
+                <button type="submit" id="createCampaignBtn">Create Campaign</button>
+            </form>
+            
+            <div id="campaignResult"></div>
+        </div>
+        
+        <!-- Connected Clients Section -->
+        <div class="section">
+            <h2>👥 Connected Clients</h2>
+            <button onclick="loadClients()">Refresh Client List</button>
+            <div id="clientsList"></div>
+        </div>
+    </div>
+
+    <!-- Facebook SDK -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" 
+            src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+    <script>
+        let connectedPages = [];
+        
+        // Initialize Facebook SDK
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: 'YOUR_APP_ID', // Replace with your actual App ID
+                cookie: true,
+                xfbml: true,
+                version: 'v18.0'
+            });
+            
+            console.log('Facebook SDK initialized');
+        };
+
+        function startEmbeddedSignup() {
+            const connectBtn = document.getElementById('connectBtn');
+            connectBtn.disabled = true;
+            connectBtn.textContent = 'Connecting...';
+            
+            FB.login(function(response) {
+                if (response.authResponse) {
+                    console.log('Login successful:', response);
+                    handleSignupSuccess(response);
+                } else {
+                    console.log('User cancelled login or did not fully authorize.');
+                    showMessage('signupResult', 'Login cancelled or not authorized', 'error');
+                    connectBtn.disabled = false;
+                    connectBtn.textContent = 'Connect Facebook Page';
+                }
+            }, {
+                scope: 'pages_manage_ads,pages_read_engagement,ads_management,pages_show_list',
+                return_scopes: true
+            });
+        }
+
+        async function handleSignupSuccess(response) {
+            try {
+                const result = await fetch('/api/process-signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        accessToken: response.authResponse.accessToken,
+                        userID: response.authResponse.userID
+                    })
+                });
+                
+                const data = await result.json();
+                
+                if (data.success) {
+                    connectedPages = data.pages;
+                    showMessage('signupResult', 'Successfully connected! Pages found: ' + data.pages.length, 'success');
+                    displayPages(data.pages);
+                    updatePageSelect(data.pages);
+                } else {
+                    showMessage('signupResult', 'Error: ' + (data.error || 'Unknown error'), 'error');
+                }
+            } catch (error) {
+                console.error('Signup processing error:', error);
+                showMessage('signupResult', 'Error processing signup: ' + error.message, 'error');
+            }
+            
+            const connectBtn = document.getElementById('connectBtn');
+            connectBtn.disabled = false;
+            connectBtn.textContent = 'Connect Facebook Page';
+        }
+
+        function displayPages(pages) {
+            const pagesList = document.getElementById('pagesList');
+            if (pages.length === 0) {
+                pagesList.innerHTML = '<p>No pages found. Make sure you have admin access to Facebook pages.</p>';
+                return;
+            }
+            
+            let html = '<h3>Connected Pages:</h3><div class="pages-list">';
+            pages.forEach(page => {
+                html += `
+                    <div class="page-item">
+                        <strong>${page.name}</strong> (${page.category || 'Unknown category'})
+                        <br><small>ID: ${page.id}</small>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            pagesList.innerHTML = html;
+        }
+
+        function updatePageSelect(pages) {
+            const pageSelect = document.getElementById('pageSelect');
+            pageSelect.innerHTML = '<option value="">-- Select a page --</option>';
+            
+            pages.forEach(page => {
+                const option = document.createElement('option');
+                option.value = page.id;
+                option.textContent = page.name;
+                pageSelect.appendChild(option);
+            });
+        }
+
+        // Campaign creation
+        document.getElementById('campaignForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const createBtn = document.getElementById('createCampaignBtn');
+            createBtn.disabled = true;
+            createBtn.textContent = 'Creating Campaign...';
+            
+            const formData = {
+                clientPageId: document.getElementById('pageSelect').value,
+                campaignName: document.getElementById('campaignName').value,
+                objective: document.getElementById('objective').value,
+                dailyBudget: parseInt(document.getElementById('dailyBudget').value),
+                creative: {
+                    message: document.getElementById('message').value,
+                    link: document.getElementById('link').value,
+                    headline: document.getElementById('headline').value,
+                    description: 'Learn more about our products and services.'
+                },
+                targeting: {
+                    countries: ['US'],
+                    ageMin: 18,
+                    ageMax: 65
+                }
+            };
+            
+            try {
+                const response = await fetch('/api/create-campaign', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    showMessage('campaignResult', 
+                        `Campaign created successfully! Campaign ID: ${result.campaign.campaign_id}`, 
+                        'success'
+                    );
+                    document.getElementById('campaignForm').reset();
+                } else {
+                    showMessage('campaignResult', 
+                        'Error creating campaign: ' + (result.error || 'Unknown error'), 
+                        'error'
+                    );
+                }
+            } catch (error) {
+                console.error('Campaign creation error:', error);
+                showMessage('campaignResult', 
+                    'Error creating campaign: ' + error.message, 
+                    'error'
+                );
+            }
+            
+            createBtn.disabled = false;
+            createBtn.textContent = 'Create Campaign';
+        });
+
+        async function loadClients() {
+            try {
+                const response = await fetch('/api/clients');
+                const clients = await response.json();
+                
+                const clientsList = document.getElementById('clientsList');
+                
+                if (clients.length === 0) {
+                    clientsList.innerHTML = '<p>No clients connected yet.</p>';
+                    return;
+                }
+                
+                let html = '<h3>Connected Clients:</h3>';
+                clients.forEach(client => {
+                    html += `
+                        <div class="page-item">
+                            <strong>User ID:</strong> ${client.userId}<br>
+                            <strong>Pages:</strong> ${client.pages.map(p => p.name).join(', ')}<br>
+                            <strong>Connected:</strong> ${new Date(client.createdAt).toLocaleDateString()}
+                        </div>
+                    `;
+                });
+                
+                clientsList.innerHTML = html;
+            } catch (error) {
+                console.error('Error loading clients:', error);
+                showMessage('clientsList', 'Error loading clients: ' + error.message, 'error');
+            }
+        }
+
+        function showMessage(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = `<div class="${type}">${message}</div>`;
+        }
+
+        // Load clients on page load
+        window.addEventListener('load', function() {
+            loadClients();
+        });
+    </script>
+</body>
+</html>
